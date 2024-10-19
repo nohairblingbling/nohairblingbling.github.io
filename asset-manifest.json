@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.c5bd9717.css",
-    "main.js": "/static/js/main.756f082d.js",
+    "main.js": "/static/js/main.64515ffe.js",
     "static/media/interview.png": "/static/media/interview.695e6063963c53e56b53.png",
     "static/media/dcd.png": "/static/media/dcd.8aa88e0d0291c1a646fd.png",
     "static/media/BiFocalNet.png": "/static/media/BiFocalNet.3324f59ed14819decd1a.png",
@@ -13,10 +13,10 @@
     "index.html": "/index.html",
     "static/media/blob.svg": "/static/media/blob.16a350fbde67ed07a10c.svg",
     "main.c5bd9717.css.map": "/static/css/main.c5bd9717.css.map",
-    "main.756f082d.js.map": "/static/js/main.756f082d.js.map"
+    "main.64515ffe.js.map": "/static/js/main.64515ffe.js.map"
   },
   "entrypoints": [
     "static/css/main.c5bd9717.css",
-    "static/js/main.756f082d.js"
+    "static/js/main.64515ffe.js"
   ]
 }
