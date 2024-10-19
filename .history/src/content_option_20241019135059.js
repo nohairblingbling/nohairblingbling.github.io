@@ -1,0 +1,231 @@
+const logotext = "Yuzhuo Jia";
+const meta = {
+  title: "Yuzhuo Jia",
+  description: "I'm Yuzhuo Jia",
+};
+
+const introdata = {
+  title: "Yuzhuo Jia",
+//   animated: {
+//     first: "[]",
+//     second: "[]",
+//   },
+//   description:
+//     "In the past, I was a Research Assistant at the KAIST Interaction Lab (KIXLAB) developing a Generative Agent for Programming Education. My research interests are at the intersection of Human-AI Interaction and applied Machine Learning.",
+//   description_two:
+//     "  I am currently a first year Computer Science (MS) student at Stanford and I did my undergrad at Cornell studying Information Science. I have received grants and scholarships for my research like the Robert S Ann Morley Research Grant and the Gwanjeong Scholarship for my Master's Studies.",
+//   your_img_url: "",
+};
+
+const dataabout = {
+  title: "Research Interests",
+  aboutme:
+    "My research interests focus on interdisciplinary studies, with a particular emphasis on exploring how deep learning, computer vision, or LLM technologies can be integrated with diverse fields. I aim to develop innovative, socially conscious research and tools that not only contribute to academic advancement but also address real-world societal challenges. My goal is to harness the power of AI to create solutions that are both technologically advanced and ethically responsible, ensuring their positive impact across different communities and disciplines.",
+};
+const worktimeline = [
+  {
+    jobtitle: "University of Sydney",
+    where: "Computer Science (MS)",
+    date: "Feb 2023 - Mar 2025",
+  },
+  {
+    jobtitle: "Nanfang College of Sun Yat-sen University",
+    where: "Computer Science and Technology (BS)",
+    date: "Sep 2017 - June 2021",
+  },
+];
+
+const skills = [
+  {
+    name: "Python",
+    value: 90,
+  },
+  {
+    name: "Djano",
+    value: 85,
+  },
+  {
+    name: "Javascript",
+    value: 80,
+  },
+  {
+    name: "React",
+    value: 60,
+  },
+  {
+    name: "Jquery",
+    value: 85,
+  },
+];
+
+const services = [
+  {
+    title: "SDG AI Lab - Software Engineer",
+    period: "March 2023 - May 2023",
+    description:
+      "Development of the Digital Technologies Radar : a Frontier Technology Radar for Disaster Risk Reduction (FTR4DRR), which allows for the systematic tracking and understanding of frontier technologies as they are developed. https://github.com/SDG-AI-Lab/Digital_Technologies_Radar",
+  },
+  {
+    title: "Inspirit AI - AI/ML Instructor",
+    period: "March 2020 - ",
+    description:
+      "Conducted lectures on Neural Networks, Computer Vision, Deep Learning, Reinforcement Learning and helped highschool students work on programming ML Models",
+  },
+  {
+    title: "Cornell Data Science - Insights Team",
+    period: "Janurary 2020 - December 2022 ",
+    description:
+      "Insights Team - Conducted and led Data Science/Machine Learning Projects, Conducted lectures on Neural Networks for Freshman Onboarding INFO 1998 ML lectures ",
+  },
+];
+
+const awards = [
+  {
+    title: "Gwanjeong Educational Foundation Scholarship - Masters Degree",
+    period: "Sep 2023 - June 2025",
+  },
+  {
+    title:
+      "ACM/IEEE Human Robot Interaction (HRI 2023) - Best Student Paper Award",
+    period: "March 2022",
+  },
+  {
+    title: "Robert S Ann Morley Research Grant - Cornell University",
+    period: " December 2021 ",
+  },
+];
+
+const workexperience = [
+  {
+    title: "[Motional] Robotics Research Engineer",
+    period: "Sep 2022 - Dec 2022",
+    description:
+      "Research on identification of Autonomous Vehicle Lane Change key parameters and metrics in dynamic road environments interacting with other agents. Published and first authored 2 papers to ACM/IEEE HRI 2023",
+  },
+  {
+    title: "[Harvard Berkman Klein Center] Software Engineer",
+    period: "May 2023 - August 2023",
+    description:
+      "Developed Software for dynamic text annotation and page navigation on H2O, an open-casebook platform (React, Django). Conducted Research on Digital Reading Interaction Software and published paper to ACM/IEEE CHI 2023",
+  },
+  {
+    title: "[Cochl. AI] Software Engineer",
+    period: "Nov 2020 - Feb 2021 ",
+    description:
+      "Integrated non-verbal sound recognition AI into Mercedes Benz User Interface. Full-stack development using React, Javascript, SocketIO, Docker. Developed and demonstrated a working prototype of Emotional Sound Recognition within Benz Cars to the Mercedes Benz Team - Presentation at Benz conference in Germany",
+  },
+];
+
+const researchexperience = [
+  {
+    title: "KIXLab (Prof. Juho Kim) - Generative Agents for Programming",
+    period: "June 2023 - ",
+    description:
+      "Developed a LLM Teachable Agent (Algobo) for Programming Education. Developed prompting techniques for Knowledge State Configuration and conducted LLM Agent Evaluation on different knowledge states. Submitted to CHI 2024",
+  },
+  {
+    title: "CMU Safe AI Lab - Multimodal ML Research",
+    period: "Jan 2023 - March 2023 ",
+    description:
+      "Conducted lectures on Neural Networks, Computer Vision, Deep Learning, Reinforcement Learning and helped highschool students work on programming ML Models",
+  },
+  {
+    title: "Stanford Empirical Security Research Group (ESRG)",
+    period: "June 2023 - ",
+    description:
+      "Perceived Harm Research through an extension that collects user viewed comments on Reddit. Full Stack Development of website that processes user comments, labels toxicity scores and generates survey pairs. Parallel processing of comments, data mangagement and storage, web security. ",
+  },
+];
+
+const dataportfolio = [
+  {
+    img: "BiFocalNet",
+    title:
+      "BiFocalNet: Dual-Branch Architecture for Enhanced Remote Sensing Segmentation",
+    authors:
+      "Yuzhuo Jia",
+    conference:
+      "IEEE Transactions on Geoscience and Remote Sensing",
+    //doi: "https://doi.org/10.48550/arXiv.2408.10240",
+    //video: "https://www.youtube.com/watch?v=tJUqjjwSxPs",
+    notes: "Under Revision",
+    code: "Code Coming Soon",
+  },
+  {
+    img: "bibm1",
+    title:
+      "FODAP Graph for Enhanced Medical Imaging Narrative Generation: Adaptive Differentiation of Normal and Abnormal Attributes",
+    authors: [
+      { name: "Kai Shu", bold: true },
+      { name: "Yuzhuo Jia", bold: true },
+      { name: "Ziyang Zhang", bold: false },
+      { name: "Jiechao Gao", bold: false }
+    ],
+    conference: "International Conference on Bioinformatics and Biomedicine (BIBM 2024)",
+    doi: "https://www.arxiv.org/abs/2409.03947",
+  },
+  {
+    img: "yolo5",    
+    title:
+      "Pedestrian behavior detection and traffic violation recognition based on YOLOv5",
+    authors: "Yuzhuo Jia",
+    conference:
+      "International Conference on Image Processing and Intelligent Control",
+    doi: "https://doi.org/10.1117/12.3038591",
+  },
+];
+
+const projectportfolio = [
+  {
+    img: "paper",
+    title: "Paper Review Assistant",
+    description:
+      "Developed a Next.js web app utilizing AI for academic paper review with PDF upload, customizable parameters, multilingual support, and a responsive, animated UI built with React, Tailwind CSS, and integrated with OpenAI/Claude’s API.",
+    github: "https://github.com/nohairblingbling/paper-review-assistant",
+    //website: "",
+  },
+  {
+    img: "interview",
+    title: "Interview Assistant",
+    description:
+      "Developed a cross-platform Electron app for real-time interview response suggestions, integrating speech-to-text, GPT-based intelligent answers, and personalized content management, with privacy-focused local data processing.",
+    github: "https://github.com/nohairblingbling/Interview-Assistant",
+    //website: "",
+  },
+
+
+];
+
+const contactConfig = {
+  YOUR_EMAIL: "yjia8942@uni.sydney.edu.au",
+  YOUR_FONE: "-",
+  description: "- ",
+  // creat an emailjs.com account
+  // check out this tutorial https://www.emailjs.com/docs/examples/reactjs/
+  YOUR_SERVICE_ID: "service_id",
+  YOUR_TEMPLATE_ID: "template_id",
+  YOUR_USER_ID: "user_id",
+};
+
+const socialprofils = {
+  github: "https://github.com/nohairblingbling",
+//   facebook: "https://facebook.com",
+  //scholar: "https://scholar.google.com/citations?user=POepUzkAAAAJ&hl=en",
+  //linkedin: "https://www.linkedin.com/in/seonghee-lee/",
+  instagram: "https://www.instagram.com/lorcanxoo/",
+};
+export {
+  meta,
+  dataabout,
+  dataportfolio,
+  researchexperience,
+  workexperience,
+  worktimeline,
+  services,
+  introdata,
+  contactConfig,
+  socialprofils,
+  projectportfolio,
+  logotext,
+  awards,
+};

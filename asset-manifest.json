@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/static/css/main.c5bd9717.css",
+    "main.js": "/static/js/main.756f082d.js",
+    "static/media/interview.png": "/static/media/interview.695e6063963c53e56b53.png",
+    "static/media/dcd.png": "/static/media/dcd.8aa88e0d0291c1a646fd.png",
+    "static/media/BiFocalNet.png": "/static/media/BiFocalNet.3324f59ed14819decd1a.png",
+    "static/media/bibm1.png": "/static/media/bibm1.5210a21a051085561e32.png",
+    "static/media/paper.gif": "/static/media/paper.0bff5eaf74b0dd9f8f36.gif",
+    "static/media/touxian.jpg": "/static/media/touxian.9518ee180d028e754a23.jpg",
+    "static/media/yolo5.png": "/static/media/yolo5.86cbfa05b89475e5278b.png",
+    "static/media/icon.jpg": "/static/media/icon.53d1be3e640daaf13a1f.jpg",
+    "index.html": "/index.html",
+    "static/media/blob.svg": "/static/media/blob.16a350fbde67ed07a10c.svg",
+    "main.c5bd9717.css.map": "/static/css/main.c5bd9717.css.map",
+    "main.756f082d.js.map": "/static/js/main.756f082d.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c5bd9717.css",
+    "static/js/main.756f082d.js"
+  ]
+}
