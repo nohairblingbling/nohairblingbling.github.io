@@ -55,10 +55,8 @@ export const Home = () => {
                 <p className="mb-1x">
                   {" "}
                   Hello! :) I'm Yuzhuo Jia. <br></br>
-                  <br></br>A Computer Science Master's graduate from the
-                  University of Sydney, and I am currently a Research Assistant
-                  at Tsinghua University working on projects related to AI
-                  Agents.
+                  <br></br>and I am currently a Research Assistant at Tsinghua
+                  University working on projects related to AI Agents.
                 </p>
                 <div className="intro_btn-action pb-5">
                   <a href="https://drive.google.com/file/d/1MmzkCLNbxnSfFmiBp79fby5Vf9Paly45/view?usp=drive_link">

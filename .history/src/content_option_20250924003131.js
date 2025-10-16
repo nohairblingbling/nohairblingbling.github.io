@@ -113,14 +113,12 @@ const researchexperience = [
   {
     title: "Adaptive Reading System Project",
     period: "Jun 2025 – Sep 2025",
-    description:
-      "As the lead on an adaptive reading system project, I architected and implemented a browser-based Tampermonkey userscript that leverages MediaPipe Face Mesh for real-time facial landmark detection. This system dynamically adapts font size and color contrast by precisely calculating the user's viewing distance. I executed a comprehensive user study with 24 middle-aged adults to evaluate the system's impact on reading speed, comprehension, and comfort. Following the study, I performed qualitative thematic analysis on interviews, which uncovered key usability insights, such as the trade-off between the cognitive load of adaptations and performance gains. I also spearheaded the writing of the research paper submitted to a top-tier HCI conference, contributing significantly to the literature review, system design, and discussion sections.",
+    description: "",
   },
   {
     title: "Embodied Intelligence Research Group",
     period: "Apr 2025 – Aug 2025",
-    description:
-      "For the Embodied Intelligence Research Group, I engineered and constructed a 6-DOF force-controlled robotic arm using 3D-printed components and DAMIAO motors, and am currently integrating the system with MoveIt 2 for advanced motion planning and control. I also extended an open-source framework to create an enhanced web-based agentic system, equipping it with speech-to-text (STT) capabilities, real-time video streaming, and Model Context Protocol (MCP) client integration to ensure seamless compatibility with all MCP-compliant tools and services.",
+    description: "",
   },
   {
     title: "PI Lab – MathAdventure Project",
@@ -168,8 +166,8 @@ const dataportfolio = [
     title:
       "FODAP Graph for Enhanced Medical Imaging Narrative Generation: Adaptive Differentiation of Normal and Abnormal Attributes",
     authors: [
-      { name: "Kai Shu*", bold: false },
-      { name: "Yuzhuo Jia*", bold: true },
+      { name: "Kai Shu", bold: true },
+      { name: "Yuzhuo Jia", bold: true },
       { name: "Ziyang Zhang", bold: false },
       { name: "Jiechao Gao", bold: false },
     ],
@@ -185,19 +183,6 @@ const dataportfolio = [
     conference:
       "International Conference on Image Processing and Intelligent Control",
     doi: "https://doi.org/10.1117/12.3038591",
-  },
-  {
-    img: "new_research",
-    title:
-      "Balancing Automation and Agency: How Middle-Aged Adults Experience Dynamic Adaptations During Digital Reading",
-    authors: [
-      { name: "Keye Yu*", bold: false },
-      { name: "Yuzhuo Jia*", bold: true },
-      { name: "Chen Zheng", bold: false },
-    ],
-    conference: "Submit to CHI 26",
-    // notes: "Submit to CHI 26",
-    code: "Code Coming Soon",
   },
 ];
 

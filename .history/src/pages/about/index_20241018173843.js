@@ -25,7 +25,7 @@ export const About = () => {
         </Helmet>
         <Row className="mb-5 mt-3 pt-md-3">
           <Col lg="8">
-            <h1 className="display-4 mb-4">About Me - Yuzhuo Jia</h1>
+            <h1 className="display-4 mb-4">CV - Yuzhuo Jia</h1>
             <hr className="t_border my-4 ml-0 text-left" />
           </Col>
         </Row>

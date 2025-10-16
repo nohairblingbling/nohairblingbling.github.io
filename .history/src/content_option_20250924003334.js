@@ -168,8 +168,8 @@ const dataportfolio = [
     title:
       "FODAP Graph for Enhanced Medical Imaging Narrative Generation: Adaptive Differentiation of Normal and Abnormal Attributes",
     authors: [
-      { name: "Kai Shu*", bold: false },
-      { name: "Yuzhuo Jia*", bold: true },
+      { name: "Kai Shu", bold: true },
+      { name: "Yuzhuo Jia", bold: true },
       { name: "Ziyang Zhang", bold: false },
       { name: "Jiechao Gao", bold: false },
     ],
@@ -185,19 +185,6 @@ const dataportfolio = [
     conference:
       "International Conference on Image Processing and Intelligent Control",
     doi: "https://doi.org/10.1117/12.3038591",
-  },
-  {
-    img: "new_research",
-    title:
-      "Balancing Automation and Agency: How Middle-Aged Adults Experience Dynamic Adaptations During Digital Reading",
-    authors: [
-      { name: "Keye Yu*", bold: false },
-      { name: "Yuzhuo Jia*", bold: true },
-      { name: "Chen Zheng", bold: false },
-    ],
-    conference: "Submit to CHI 26",
-    // notes: "Submit to CHI 26",
-    code: "Code Coming Soon",
   },
 ];
 

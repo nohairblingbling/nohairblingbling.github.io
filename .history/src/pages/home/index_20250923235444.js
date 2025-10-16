@@ -54,14 +54,16 @@ export const Home = () => {
                 <br />
                 <p className="mb-1x">
                   {" "}
-                  Hello! :) I'm Yuzhuo Jia. <br></br>
-                  <br></br>A Computer Science Master's graduate from the
-                  University of Sydney, and I am currently a Research Assistant
-                  at Tsinghua University working on projects related to AI
-                  Agents.
+                  Hello! :) I'm Yuzhuo Jia, a second-year <br></br>
+                  <br></br>I have experience in machine learning, particularly
+                  in computer vision, web development, backend infrastructure,
+                  and programming. <br></br>I am very interested in
+                  interdisciplinary research, Apple’s WWDC conferences, and I am
+                  passionate about learning more about interdisciplinary
+                  integration.
                 </p>
                 <div className="intro_btn-action pb-5">
-                  <a href="https://drive.google.com/file/d/1MmzkCLNbxnSfFmiBp79fby5Vf9Paly45/view?usp=drive_link">
+                  <a href="https://drive.google.com/file/d/1VbmhAlD8WjwJnVY0eaBi3xXUfARMB4Za/view?usp=sharing">
                     <div id="button_h" className="ac_btn btn">
                       Resume
                       <div className="ring one"></div>
