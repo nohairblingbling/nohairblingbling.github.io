@@ -1,5 +1,6 @@
 import Nav from './components/Nav';
 import Hero from './components/Hero';
+import About from './components/About';
 import Footer from './components/Footer';
 
 export default function App() {
@@ -8,7 +9,7 @@ export default function App() {
       <Nav />
       <main>
         <Hero />
-        <section id="about" className="mx-auto max-w-5xl scroll-mt-20 px-6 py-28" />
+        <About />
         <section id="research" className="mx-auto max-w-5xl scroll-mt-20 px-6 py-28" />
         <section id="publications" className="mx-auto max-w-5xl scroll-mt-20 px-6 py-28" />
         <section id="projects" className="mx-auto max-w-5xl scroll-mt-20 px-6 py-28" />
