@@ -1,6 +1,5 @@
 import Nav from './components/Nav';
 import Hero from './components/Hero';
-import About from './components/About';
 import Research from './components/Research';
 import Publications from './components/Publications';
 import Projects from './components/Projects';
@@ -15,7 +14,6 @@ export default function App() {
       <Nav />
       <main>
         <Hero />
-        <About />
         <Research />
         <Publications />
         <Projects />

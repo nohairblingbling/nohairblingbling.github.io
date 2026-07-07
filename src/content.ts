@@ -2,7 +2,6 @@ import imgBifocal from './assets/BiFocalNet.jpg';
 import imgBibm from './assets/bibm1.jpg';
 import imgYolo from './assets/yolo5.jpg';
 import imgReading from './assets/new_research.jpg';
-import imgPaper from './assets/paper.gif';
 import imgInterview from './assets/interview.jpg';
 import imgDcd from './assets/dcd.png';
 import imgPortrait from './assets/touxian.jpg';
@@ -14,9 +13,15 @@ export type Publication = {
   venue: string;
   status?: string;
   link?: { label: string; url: string };
-  image: string;
+  image?: string;
 };
-export type Project = { title: string; description: string; github?: string; image: string };
+export type Project = {
+  title: string;
+  description: string;
+  period?: string;
+  github?: string;
+  image?: string;
+};
 export type ResearchEntry = { title: string; period: string; description: string };
 export type TimelineEntry = { org: string; role: string; period: string };
 
@@ -26,95 +31,116 @@ export const meta = {
 };
 
 export const hero = {
-  kicker: '01 / HCI × EMBODIED AI',
+  kicker: '01 / AGENTIC AI × LLM × HCI',
   name: 'Yuzhuo Jia',
-  tagline:
-    'Building adaptive, embodied and mixed-reality interfaces — technology that makes interaction more intelligent and more natural.',
   // 转博 / 换头衔只改这一行：
   position: 'Research Assistant · Tsinghua University',
+  bio: 'My research lies at the intersection of Agentic AI, Large Language Models, and Human-Computer Interaction, with a focus on adaptive interfaces, embodied cognition, and AI-driven learning systems. Currently I investigate whether LLMs can develop human-like bodily representations when interacting with virtual environments.',
+  cv: '/cv.pdf',
   status: 'OPEN TO COLLABORATION',
 };
 
 export const about = {
-  bio: 'My research interests are in Human-Computer Interaction (HCI), specifically at the intersection of Robotics, Mixed Reality (MR), wearables, and AI Agents. I am passionate about using technology to create more intelligent and natural interactive experiences for the future.',
   portrait: imgPortrait,
   interests: [
+    'Agentic AI',
+    'Large Language Models',
     'Human-Computer Interaction',
-    'Robotics',
-    'Mixed Reality',
-    'Wearables',
-    'AI Agents',
-    'Computer Vision',
+    'Adaptive Interfaces',
+    'Embodied Cognition',
+    'AI-Driven Learning',
   ],
 };
 
 export const timeline: TimelineEntry[] = [
   { org: 'Tsinghua University', role: 'Research Assistant', period: 'Feb 2025 — Present' },
-  { org: 'University of Sydney', role: 'MS, Computer Science', period: 'Feb 2023 — Mar 2025' },
+  { org: 'University of Sydney', role: 'MSc, Computer Science', period: 'Feb 2023 — Feb 2025' },
   {
     org: 'Nanfang College of Sun Yat-sen University',
-    role: 'BS, Computer Science and Technology',
-    period: 'Sep 2017 — Jun 2021',
+    role: 'BSc, Computer Science and Technology',
+    period: 'Sep 2017 — Sep 2021',
   },
 ];
 
 export const stats = [
-  { value: 4, label: 'Publications' },
+  { value: 6, label: 'Publications' },
   { value: 6, label: 'Research projects' },
   { value: 3, label: 'Institutions' },
 ];
 
 export const research: ResearchEntry[] = [
   {
+    title: "Human and LLMs' Bodily Representations",
+    period: 'Sep 2025 — Present',
+    description:
+      'Investigating whether pretrained Large Language Models can develop human-like bodily representations when interacting with virtual environments, addressing a critical gap in embodied cognition research across the spectrum from conceptualization to sensorimotor experience. Participated in designing experimental paradigms for comparing human and LLM cognitive representations on embodied tasks. Developed the computational analysis framework: deployment of open-source vision-language models, layer-wise embedding extraction, dimension reduction via PCA, t-SNE clustering for representation visualization, and Representational Similarity Analysis (RSA) to quantify representation overlaps between humans and LLMs. Contributing to manuscript preparation for top-tier cognitive science journals, with responsibilities in experimental design, computational modeling, data analysis, and writing the Methods and Results sections.',
+  },
+  {
     title: 'Adaptive Reading System',
     period: 'Jun 2025 — Sep 2025',
     description:
-      "As the lead on an adaptive reading system project, I architected and implemented a browser-based Tampermonkey userscript that leverages MediaPipe Face Mesh for real-time facial landmark detection. This system dynamically adapts font size and color contrast by precisely calculating the user's viewing distance. I executed a comprehensive user study with 24 middle-aged adults to evaluate the system's impact on reading speed, comprehension, and comfort. Following the study, I performed qualitative thematic analysis on interviews, which uncovered key usability insights, such as the trade-off between the cognitive load of adaptations and performance gains. I also spearheaded the writing of the research paper submitted to a top-tier HCI conference, contributing significantly to the literature review, system design, and discussion sections.",
+      "Architected and implemented a browser-based adaptive reading system as a lightweight Tampermonkey userscript. The core sensing module leverages MediaPipe Face Mesh for real-time facial landmark detection, enabling precise viewing-distance calculation to dynamically adapt font size and color contrast. Executed a comprehensive user study with 24 middle-aged adults across four reading conditions, and performed thematic analysis on semi-structured interviews, uncovering key usability insights such as the trade-off between the cognitive load of adaptations and performance gains. Co-authored the research paper (Related Work, System Design, Discussion) — accepted at CHI 2026 as a poster.",
   },
   {
     title: 'Embodied Intelligence Research Group',
     period: 'Apr 2025 — Aug 2025',
     description:
-      'For the Embodied Intelligence Research Group, I engineered and constructed a 6-DOF force-controlled robotic arm using 3D-printed components and DAMIAO motors, and am currently integrating the system with MoveIt 2 for advanced motion planning and control. I also extended an open-source framework to create an enhanced web-based agentic system, equipping it with speech-to-text (STT) capabilities, real-time video streaming, and Model Context Protocol (MCP) client integration to ensure seamless compatibility with all MCP-compliant tools and services.',
+      'Engineered and constructed a 6-DOF force-controlled robotic arm using 3D-printed components and DAMIAO motors, currently integrating the system with MoveIt 2 for advanced motion planning and control. Extended an open-source framework to develop an enhanced web-based agentic system with speech-to-text (STT) capabilities, real-time video streaming, and Model Context Protocol (MCP) client integration, enabling seamless compatibility with all MCP-compliant tools and services.',
   },
   {
     title: 'PI Lab — MathAdventure',
     period: 'Jan 2025 — Mar 2025',
     description:
-      "In the MathAdventure project, I contributed to a novel, screen-free, voice-based interactive learning system designed to enhance mathematical understanding of the decimal system in children aged 4-8. Grounded in Contextual Learning and Zone of Proximal Development (ZPD) principles, the system uses real-world object symbolization to teach math concepts. My core contribution was building the computer vision module for real-time object recognition, which enabled the generation of contextualized math problems based on a child's immediate physical surroundings. I also orchestrated comprehensive user studies with 18 child-parent pairs, employing methods like Wizard of Oz experiments and iterative prototype testing to evaluate the system's engagement and learning effectiveness. Furthermore, I authored significant sections of the manuscript submitted to UIST 2025, including the Related Work and key parts of the System Design and Development.",
+      "Contributed to MathAdventure, a novel screen-free, voice-based interactive learning system grounded in Contextual Learning and Zone of Proximal Development (ZPD) principles, designed to enhance mathematical understanding of the decimal system in children aged 4-8 through real-world object symbolization. Built the core computer vision module for real-time object recognition, enabling contextualized math problem generation from children's immediate physical surroundings. Orchestrated user studies including Wizard of Oz experiments and iterative prototype testing with 18 child-parent pairs, and authored significant sections of the manuscript, including Related Work and key portions of System Design and Development.",
   },
   {
     title: 'BiFocalNet: Dual-Branch Remote Sensing Segmentation',
-    period: 'Jul 2024 — Dec 2024',
+    period: 'Jun 2024 — Dec 2024',
     description:
-      "Developed BiFocalNet, a deep learning architecture for remote sensing segmentation, achieving a 3.062% improvement in mean IoU on the GID dataset. Designed a parallelized encoder combining EfficientNetV2 and Pyramid Vision Transformer, integrated via Cross-Fusion and SuperASPP modules for enhanced multi-scale context modeling. Demonstrated superior performance in key categories, with 3.279% and 3.514% improvements in 'Forest' and 'Built-up' segmentation.",
+      'Proposed BiFocalNet for remote sensing segmentation, achieving state-of-the-art results on the GID dataset with +3.06 mIoU over prior work. Designed a dual-branch encoder combining EfficientNetV2 and Pyramid Vision Transformer to capture local details and global context, integrated via Cross-Fusion and SuperASPP modules for feature fusion and multi-scale modeling. Ran extensive experiments and ablations, improving over ParaTransCNN by +3.28 (Forest) and +3.51 (Built-up) mIoU.',
   },
   {
     title: 'FODAP Graph for Medical Imaging Narrative Generation',
     period: 'Mar 2023 — May 2024',
     description:
-      "Co-designed a MedSAM-based visual encoder with Vision Transformer (ViT) architecture, processing 512x512 medical images for high-quality feature representation. Simplified the model by removing the MLP neck and optimizing patch embeddings. Implemented a feature reduction strategy to improve generalization across datasets. Conducted comparative experiments, showing MedSAM's superior performance in medical imaging, and contributed to the Graph-Enhanced Attention (GEA) mechanism for more accurate medical report generation.",
-  },
-  {
-    title: 'Corn Pest Detection Based on Improved YOLOv7',
-    period: 'Dec 2023 — Mar 2024',
-    description:
-      'Developed SPD-YOLOv7, an enhanced model for corn pest detection with 98.38% accuracy, 99.51% recall, and 99.4% mAP@0.5, outperforming YOLOv7. Introduced SPD-Conv to improve small object detection and ELAN-W with CBAM attention for better feature extraction in complex backgrounds. Conducted ablation experiments to validate model improvements, especially for small pest detection.',
+      "Built a MedSAM-based ViT visual encoder for 512×512 medical images to generate high-quality representations. Simplified the encoder by removing the MLP neck and using patch embeddings directly, reducing features from 1024×768 to 256×768 to unify outputs and improve generalization. Benchmarked against BioMedCLIP-pretrained ViT-B/16 and ImageNet21k-pretrained CvT, demonstrating MedSAM's best performance for medical imaging narrative generation.",
   },
 ];
 
 export const publications: Publication[] = [
   {
     title:
-      'Balancing Automation and Agency: How Middle-Aged Adults Experience Dynamic Adaptations During Digital Reading',
+      'Balancing Automation and Agency: Designing Adaptive Reading Interfaces for Middle-Aged Office Workers',
     authors: [
       { name: 'Keye Yu*' },
       { name: 'Yuzhuo Jia*', me: true },
+      { name: 'H. Fan' },
       { name: 'Chen Zheng' },
+      { name: 'Z. Peng' },
     ],
-    venue: 'CHI 2026',
-    status: 'In submission',
+    venue: 'ACM CHI 2026 (Poster)',
+    status: 'Accepted',
     image: imgReading,
+  },
+  {
+    title:
+      'LUMOS: Designing an Interactive Companion Robot to Enhance Critical Reading and Thinking in Academic Contexts',
+    authors: [
+      { name: 'Y. Mao*' },
+      { name: 'Y. Li*' },
+      { name: 'Yuzhuo Jia', me: true },
+      { name: 'F. Li' },
+      { name: 'Z. Yin' },
+      { name: 'S. Zheng' },
+    ],
+    venue: 'IEEE RO-MAN 2026',
+    status: 'Accepted',
+  },
+  {
+    title: "Human and LLMs' Bodily Representations",
+    authors: [{ name: 'Yuzhuo Jia (first author)', me: true }],
+    venue: 'Nature Machine Intelligence',
+    status: 'In preparation',
   },
   {
     title: 'BiFocalNet: Dual-Branch Architecture for Enhanced Remote Sensing Segmentation',
@@ -124,8 +150,7 @@ export const publications: Publication[] = [
     image: imgBifocal,
   },
   {
-    title:
-      'FODAP Graph for Enhanced Medical Imaging Narrative Generation: Adaptive Differentiation of Normal and Abnormal Attributes',
+    title: 'FODAP Graph for Enhanced Medical Imaging Narrative Generation',
     authors: [
       { name: 'Kai Shu*' },
       { name: 'Yuzhuo Jia*', me: true },
@@ -133,13 +158,13 @@ export const publications: Publication[] = [
       { name: 'Jiechao Gao' },
     ],
     venue: 'International Conference on Bioinformatics and Biomedicine (BIBM 2024)',
-    link: { label: 'arXiv', url: 'https://www.arxiv.org/abs/2409.03947' },
+    link: { label: 'DOI', url: 'https://doi.org/10.1109/BIBM62325.2024.10822532' },
     image: imgBibm,
   },
   {
-    title: 'Pedestrian behavior detection and traffic violation recognition based on YOLOv5',
+    title: 'Pedestrian Behavior Detection and Traffic Violation Recognition Based on YOLOv5',
     authors: [{ name: 'Yuzhuo Jia', me: true }],
-    venue: 'International Conference on Image Processing and Intelligent Control',
+    venue: '4th International Conference on Image Processing and Intelligent Control',
     link: { label: 'DOI', url: 'https://doi.org/10.1117/12.3038591' },
     image: imgYolo,
   },
@@ -147,31 +172,33 @@ export const publications: Publication[] = [
 
 export const projects: Project[] = [
   {
-    title: 'Paper Review Assistant',
+    title: 'Fine-tuning LLMs for Struggling Student Simulation',
+    period: 'Dec 2025 — Jan 2026',
     description:
-      'A Next.js web app utilizing AI for academic paper review, with PDF upload, customizable parameters, multilingual support, and a responsive animated UI — built with React, Tailwind CSS, and the OpenAI/Claude APIs.',
-    github: 'https://github.com/nohairblingbling/paper-review-assistant',
-    image: imgPaper,
+      'A two-stage LLM augmentation pipeline using MisstepMath and the Gemini-3-Pro API, generating 1,300+ student misconception samples with structured error-type and metacognitive annotations. Applied LoRA fine-tuning on Qwen3-8B to simulate authentic struggling learners — training only 0.059% of parameters while achieving 100% metacognitive deficit behaviors — validating instruction tuning for intelligent tutoring systems and teacher training.',
+    // 仓库公开后补一行 github: 'https://github.com/...',
   },
   {
     title: 'Interview Assistant',
+    period: 'Sep 2024 — Nov 2024',
     description:
-      'A cross-platform Electron app for real-time interview response suggestions, integrating speech-to-text, GPT-based intelligent answers, and personalized content management, with privacy-focused local data processing.',
+      'A cross-platform Electron desktop app providing real-time, AI-driven response suggestions during online interviews. Integrates Deepgram low-latency speech-to-text with GPT-generated context-aware suggestions (average response under 2 seconds), supports personalization from uploaded resumes and project documents, and keeps all personal data processed locally for privacy.',
     github: 'https://github.com/nohairblingbling/Interview-Assistant',
     image: imgInterview,
   },
   {
     title: 'Teaching DCD Children How to Move Using AR',
+    period: 'Aug 2024 — Dec 2024',
     description:
-      'A web-based AR app for children with developmental coordination disorder, featuring WebXR 3D training, MediaPipe real-time motion detection, and a supportive scoring system to enhance motor skills.',
+      'A therapeutic web-based AR application using WebXR that guides children with Developmental Coordination Disorder through motor-skill exercises. A MediaPipe-based real-time motion analysis and scoring system tracks indicators like arm height and trunk stability for immediate feedback, wrapped in a child-centric, gamified UI shown in user testing to boost engagement and confidence.',
     image: imgDcd,
   },
 ];
 
 export const contact = {
-  email: 'yjia8942@uni.sydney.edu.au',
+  email: 'yuzhuojia.cs@gmail.com',
   blurb:
-    'Open to research collaboration and conversations about HCI, embodied AI, and interactive systems.',
+    'Open to research collaboration and conversations about agentic AI, embodied cognition, and interactive systems.',
 };
 
 export const socials: { label: string; url: string }[] = [

@@ -50,7 +50,7 @@ function ResearchItem({ item, index }: { item: ResearchEntry; index: number }) {
 export default function Research() {
   return (
     <section id="research" className="mx-auto max-w-5xl scroll-mt-20 px-6 py-28">
-      <SectionHeader index="03" label="RESEARCH" title="Selected research" />
+      <SectionHeader index="02" label="RESEARCH" title="Selected research" />
       <ol>
         {research.map((item, i) => (
           <ResearchItem key={item.title} item={item} index={i} />

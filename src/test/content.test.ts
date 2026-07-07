@@ -8,7 +8,7 @@ describe('content integrity', () => {
   });
   it('has 3 timeline entries and 3-value stats', () => {
     expect(timeline).toHaveLength(3);
-    expect(stats.map((s) => s.value)).toEqual([4, 6, 3]);
+    expect(stats.map((s) => s.value)).toEqual([6, 6, 3]);
   });
   it('has 6 research entries with required fields', () => {
     expect(research).toHaveLength(6);
@@ -18,10 +18,9 @@ describe('content integrity', () => {
       expect(r.description.length).toBeGreaterThan(50);
     }
   });
-  it('has 4 publications, each crediting Yuzhuo Jia', () => {
-    expect(publications).toHaveLength(4);
+  it('has 6 publications, each crediting Yuzhuo Jia', () => {
+    expect(publications).toHaveLength(6);
     for (const p of publications) {
-      expect(p.image).toBeTruthy();
       expect(p.venue.length).toBeGreaterThan(0);
       expect(p.authors.some((a) => a.me)).toBe(true);
     }
@@ -38,8 +37,9 @@ describe('content integrity', () => {
     }
   });
   it('contact and socials are set', () => {
-    expect(contact.email).toContain('@');
+    expect(contact.email).toBe('yuzhuojia.cs@gmail.com');
     expect(socials[0].url).toMatch(/^https:\/\//);
     expect(about.interests.length).toBeGreaterThanOrEqual(5);
+    expect(hero.cv).toBe('/cv.pdf');
   });
 });

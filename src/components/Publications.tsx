@@ -6,14 +6,16 @@ import SpotlightCard from './reactbits/SpotlightCard';
 function PubCard({ pub }: { pub: Publication }) {
   return (
     <SpotlightCard className="flex h-full flex-col">
-      <div className="border-b border-hairline">
-        <img
-          src={pub.image}
-          alt=""
-          loading="lazy"
-          className="aspect-[16/9] w-full object-cover opacity-80 transition-opacity duration-300 group-hover:opacity-100"
-        />
-      </div>
+      {pub.image && (
+        <div className="border-b border-hairline">
+          <img
+            src={pub.image}
+            alt=""
+            loading="lazy"
+            className="aspect-[16/9] w-full object-cover opacity-80 transition-opacity duration-300 group-hover:opacity-100"
+          />
+        </div>
+      )}
       <div className="flex flex-1 flex-col p-6">
         <div className="flex items-center justify-between gap-4">
           <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-accent">Publication</p>
@@ -52,7 +54,7 @@ function PubCard({ pub }: { pub: Publication }) {
 export default function Publications() {
   return (
     <section id="publications" className="mx-auto max-w-5xl scroll-mt-20 px-6 py-28">
-      <SectionHeader index="04" label="PUBLICATIONS" title="Publications" />
+      <SectionHeader index="03" label="PUBLICATIONS" title="Publications" />
       <div className="grid gap-5 md:grid-cols-2">
         {publications.map((p, i) => (
           <Reveal key={p.title} delay={i * 80} className="h-full">

@@ -145,3 +145,13 @@ public/
 - 不做博客/CMS
 - 不做联系表单（mailto 足够）
 - 不做路由分页
+
+## 9. 修订记录（2026-07-07 晚，用户确认）
+
+按用户最新简历（CV_of_YuzhuoJia.pdf）与"学术主页第一屏信息密集"诉求做以下修订：
+
+- **首屏合并**：Hero 与 About 合并为双栏首屏——左栏 kicker/姓名/头衔/研究简介/方向 chips/CTA（View Research、GitHub、Email、CV），右栏照片（黑白 hover 彩色 + 角标）+ EDUCATION 竖排（3 条），底部发丝线上方为 CountUp 数据行（6/6/3）+ 状态点。独立 About 区块取消，导航移除 ABOUT，区块重编号：02 Research / 03 Publications / 04 Projects / 05 Contact
+- **内容全量更新**：邮箱改为 yuzhuojia.cs@gmail.com；研究定位改为 Agentic AI × LLM × HCI（当前方向：LLM 具身认知）；论文 4→6 篇（CHI'26 Poster 已 Accepted 并更新题目与作者、新增 LUMOS RO-MAN 2026、新增 Nature MI in preparation、BIBM 换正式 DOI）；研究经历新增 LLM Bodily Representations（清华）、移除玉米害虫检测；项目新增 Fine-tuning LLMs for Struggling Student Simulation（GitHub 链接待用户补充）、移除 Paper Review Assistant；教育时间按简历修正
+- **CV 下载**：public/cv.pdf，首屏 CTA 提供 CV ↗ 外链
+- **卡片变体**：Publication/Project 卡支持无图（LUMOS、NMI、LLM 微调项目）；Project 卡显示时间段
+- **确认排除**：简历中 Awards & Activities 与 Skills 不上站（CV 链接可达）
