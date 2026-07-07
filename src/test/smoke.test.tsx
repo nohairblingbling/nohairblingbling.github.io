@@ -3,8 +3,9 @@ import { render, screen } from '@testing-library/react';
 import App from '../App';
 
 describe('App', () => {
-  it('renders', () => {
+  it('renders hero name and nav', () => {
     render(<App />);
-    expect(screen.getByRole('main')).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Yuzhuo Jia');
+    expect(screen.getByRole('link', { name: 'YZ_J' })).toBeInTheDocument();
   });
 });

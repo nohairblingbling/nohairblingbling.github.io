@@ -20,6 +20,7 @@ export default function DecryptedText({
   const inView = useInViewOnce(ref, 0.3);
   const [display, setDisplay] = useState(text);
   const [started, setStarted] = useState(false);
+  const startedRef = useRef(false);
   const timer = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const run = useCallback(() => {
@@ -49,11 +50,18 @@ export default function DecryptedText({
       setStarted(true);
       return;
     }
-    if (animateOn === 'view' && inView && !started) run();
-    return () => {
+    if (animateOn === 'view' && inView && !startedRef.current) {
+      startedRef.current = true;
+      run();
+    }
+  }, [reduced, animateOn, inView, run, text]);
+
+  useEffect(
+    () => () => {
       if (timer.current) clearInterval(timer.current);
-    };
-  }, [reduced, animateOn, inView, started, run, text]);
+    },
+    []
+  );
 
   return (
     <span
