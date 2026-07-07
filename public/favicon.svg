@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" fill="#050608"/>
+  <path d="M6 6h12M6 6v12" stroke="#2DD4E8" stroke-width="3" fill="none"/>
+  <path d="M58 58H46M58 58V46" stroke="#2DD4E8" stroke-width="3" fill="none"/>
+  <text x="32" y="41" font-family="Menlo, Consolas, monospace" font-size="22" fill="#E8EDF2" text-anchor="middle">YJ</text>
+</svg>
