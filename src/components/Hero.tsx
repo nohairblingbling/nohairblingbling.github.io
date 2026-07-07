@@ -5,6 +5,18 @@ import DecryptedText from './reactbits/DecryptedText';
 import StarBorder from './reactbits/StarBorder';
 import CornerBrackets from './ui/CornerBrackets';
 
+function renderAccented(text: string) {
+  return text.split(/\*(.+?)\*/g).map((part, i) =>
+    i % 2 === 1 ? (
+      <em key={i} className="font-serif text-[1.06em] italic text-[#bfe6ee]">
+        {part}
+      </em>
+    ) : (
+      part
+    )
+  );
+}
+
 export default function Hero() {
   const reduced = usePrefersReducedMotion();
   const coarse = useIsCoarsePointer();
@@ -15,6 +27,14 @@ export default function Hero() {
           <Particles />
         </div>
       )}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            'radial-gradient(120% 90% at 50% 38%, transparent 55%, rgba(0, 0, 0, 0.55) 100%)',
+        }}
+      />
       <div className="relative mx-auto flex min-h-screen w-full max-w-5xl flex-col justify-center px-6 pb-12 pt-24">
         <div className="grid gap-12 md:grid-cols-[1fr_250px] md:gap-16">
           <div>
@@ -23,7 +43,9 @@ export default function Hero() {
               <DecryptedText text={hero.name} animateOn="both" />
             </h1>
             <p className="mt-4 font-mono text-xs text-ink-3">{hero.position}</p>
-            <p className="mt-6 max-w-xl text-base leading-relaxed text-ink-2">{hero.bio}</p>
+            <p className="mt-6 max-w-xl text-base leading-relaxed text-ink-2">
+              {renderAccented(hero.bio)}
+            </p>
             <div className="mt-7 flex max-w-xl flex-wrap gap-2">
               {about.interests.map((i) => (
                 <span

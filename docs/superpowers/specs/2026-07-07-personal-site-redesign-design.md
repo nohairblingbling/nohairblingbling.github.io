@@ -167,3 +167,15 @@ public/
 - Projects 区块整体移除（导航同步），Contact 编号 04
 - TargetCursor 性能优化：目标矩形改为锁定时缓存 + scroll/resize 刷新（消除每帧 getBoundingClientRect 强制布局）；小圆点即时跟随（去 lerp 拖尾），仅四角保留缓动
 - 清理不再使用的图片资产（BiFocalNet/bibm1/yolo5/interview/dcd）
+
+## 11. 修订记录三（2026-07-07 深夜二，"暗房"艺术层，用户确认 A+B 混合）
+
+背景：用户是摄影师，希望在保留暗色/克制/轻赛博骨架上更艺术。确认方案 = 暗房冲印隐喻全套 + 衬线斜体点缀字；明确否决 ScrollVelocity 滚动字带。
+
+- **胶片颗粒**：新增 `Noise`（reactbits 等效自写，canvas 图案平铺 + 限频刷新），fixed 全屏 z-[45]（导航之上、光标之下），透明度约 5%；reduced-motion / 触屏降级为静态颗粒
+- **相纸暗角**：Hero 区径向渐变 vignette 叠层
+- **双色调显影**：论文配图默认灰度 + `mix-blend-color` 青蓝罩色（双色调），hover 700ms 过渡"显影"为彩色；进场用新增 Reveal `develop` 变体（模糊+过曝→清晰）
+- **帧编号语言**：区块标签从 `02 / RESEARCH` 改为 `FR.02 — RESEARCH`，Hero kicker 同步 `FR.01 — …`
+- **EXIF 签名**：页脚新增 `ISO 400 · ƒ/1.4 · 1/125` 等宽字符行（content.ts 可改）
+- **衬线点缀字**：引入 @fontsource/instrument-serif（400 + italic），`--font-serif` token；区块标题末词（Selected *research* / *Publications* / Get in *touch*）与 Hero bio 中 2-3 个关键词（content.ts 用 *星号* 标记，Hero 解析渲染）用衬线斜体、淡青 #bfe6ee
+- **保持不变**：结构、内容、Particles、DecryptedText、TargetCursor、照片彩色

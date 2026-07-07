@@ -1,12 +1,13 @@
 import { useRef, type ReactNode } from 'react';
 import { useInViewOnce, usePrefersReducedMotion } from '../../hooks';
 
-type Variant = 'fade-up' | 'blur' | 'fade';
+type Variant = 'fade-up' | 'blur' | 'fade' | 'develop';
 
 const hidden: Record<Variant, string> = {
   'fade-up': 'opacity-0 translate-y-6',
   blur: 'opacity-0 blur-[6px]',
   fade: 'opacity-0',
+  develop: 'opacity-0 blur-[6px] brightness-150',
 };
 
 export default function Reveal({
@@ -29,7 +30,7 @@ export default function Reveal({
       ref={ref}
       style={{ transitionDelay: `${delay}ms` }}
       className={`${reduced ? '' : 'transition-all duration-700 ease-out'} ${
-        shown ? 'opacity-100 translate-y-0 blur-0' : hidden[variant]
+        shown ? 'opacity-100 translate-y-0 blur-0 brightness-100' : hidden[variant]
       } ${className}`}
     >
       {children}

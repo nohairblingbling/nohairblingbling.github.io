@@ -20,11 +20,12 @@ export const meta = {
 };
 
 export const hero = {
-  kicker: '01 / AGENTIC AI × LLM × HCI',
+  kicker: 'FR.01 — AGENTIC AI × LLM × HCI',
   name: 'Yuzhuo Jia',
   // 转博 / 换头衔只改这一行：
   position: 'Research Assistant · Tsinghua University',
-  bio: 'My research lies at the intersection of Agentic AI, Large Language Models, and Human-Computer Interaction, with a focus on adaptive interfaces, embodied cognition, and AI-driven learning systems. Currently I investigate whether LLMs can develop human-like bodily representations when interacting with virtual environments.',
+  // 用 *星号* 包住的词会以衬线斜体渲染：
+  bio: 'My research lies at the intersection of Agentic AI, Large Language Models, and Human-Computer Interaction, with a focus on *adaptive interfaces*, *embodied cognition*, and AI-driven learning systems. Currently I investigate whether LLMs can develop *human-like bodily representations* when interacting with virtual environments.',
   cv: '/cv.pdf',
   status: 'OPEN TO COLLABORATION',
 };
@@ -120,5 +121,6 @@ export const socials: { label: string; url: string }[] = [
 
 export const footer = {
   coordinates: 'BEIJING — 39.99°N 116.32°E',
+  exif: 'ISO 400 · ƒ/1.4 · 1/125',
   year: new Date().getFullYear(),
 };

@@ -18,7 +18,7 @@ describe('Reveal (reduced motion)', () => {
 describe('SectionHeader', () => {
   it('renders index, label and title', () => {
     render(<SectionHeader index="02" label="ABOUT" title="About" />);
-    expect(screen.getByText('02 / ABOUT')).toBeInTheDocument();
+    expect(screen.getByText('FR.02 — ABOUT')).toBeInTheDocument();
     expect(screen.getByRole('heading', { level: 2, name: 'About' })).toBeInTheDocument();
   });
 });

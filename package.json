@@ -14,6 +14,7 @@
   "dependencies": {
     "@fontsource-variable/inter": "^5.2.5",
     "@fontsource-variable/jetbrains-mono": "^5.2.5",
+    "@fontsource/instrument-serif": "^5.2.8",
     "ogl": "^1.0.11",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"

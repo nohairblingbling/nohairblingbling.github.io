@@ -7,12 +7,16 @@ function PubCard({ pub }: { pub: Publication }) {
   return (
     <SpotlightCard className="flex h-full flex-col">
       {pub.image && (
-        <div className="border-b border-hairline">
+        <div className="relative overflow-hidden border-b border-hairline">
           <img
             src={pub.image}
             alt=""
             loading="lazy"
-            className="aspect-[16/9] w-full object-cover opacity-80 transition-opacity duration-300 group-hover:opacity-100"
+            className="aspect-[16/9] w-full object-cover [filter:grayscale(1)_brightness(0.85)_contrast(1.08)] transition-[filter] duration-700 group-hover:[filter:none]"
+          />
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 bg-[#177186] opacity-80 mix-blend-color transition-opacity duration-700 group-hover:opacity-0"
           />
         </div>
       )}
@@ -54,10 +58,10 @@ function PubCard({ pub }: { pub: Publication }) {
 export default function Publications() {
   return (
     <section id="publications" className="mx-auto max-w-5xl scroll-mt-20 px-6 py-28">
-      <SectionHeader index="03" label="PUBLICATIONS" title="Publications" />
+      <SectionHeader index="03" label="PUBLICATIONS" title="" titleAccent="Publications" />
       <div className="grid gap-5 md:grid-cols-2">
         {publications.map((p, i) => (
-          <Reveal key={p.title} delay={i * 80} className="h-full">
+          <Reveal key={p.title} variant="develop" delay={i * 80} className="h-full">
             <PubCard pub={p} />
           </Reveal>
         ))}

@@ -8,6 +8,7 @@ export default function Footer() {
         <span>
           <span className="text-accent">●</span> {footer.coordinates}
         </span>
+        <span>{footer.exif}</span>
         <a href="#top" data-cursor className="transition-colors hover:text-accent">
           BACK TO TOP ↑
         </a>
