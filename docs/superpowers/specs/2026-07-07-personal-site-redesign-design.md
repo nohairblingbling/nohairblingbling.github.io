@@ -179,3 +179,13 @@ public/
 - **EXIF 签名**：页脚新增 `ISO 400 · ƒ/1.4 · 1/125` 等宽字符行（content.ts 可改）
 - **衬线点缀字**：引入 @fontsource/instrument-serif（400 + italic），`--font-serif` token；区块标题末词（Selected *research* / *Publications* / Get in *touch*）与 Hero bio 中 2-3 个关键词（content.ts 用 *星号* 标记，Hero 解析渲染）用衬线斜体、淡青 #bfe6ee
 - **保持不变**：结构、内容、Particles、DecryptedText、TargetCursor、照片彩色
+
+## 12. 修订记录四（2026-07-07 深夜三，多页化 + 胶卷画廊，用户确认）
+
+- **多页架构**：Vite 多入口（`index.html` / `publications/index.html` / `gallery/index.html`），无路由库，干净 URL；共享 `mount.tsx` + `Layout`（Noise/TargetCursor/Nav/Footer）；页面进场 0.45s 淡入（reduced-motion 关闭）
+- **首页**＝About：Hero 首屏（右栏新增 GET IN TOUCH：邮箱 hover 解码 + GitHub/Instagram，即用户所说 "inscribe"）+ 精选论文 2 篇（`featured` 标记）+ `ALL PUBLICATIONS →`；Research 区块与独立 Contact 区块删除（ResearchEntry 数据一并移除）；CTA 行改为 View publications / GALLERY / CV
+- **/publications/**：全部论文；**/gallery/**：胶卷画廊——横向滚动长条、齿孔（repeating-gradient）、胶片边缘刻字（`YZJ 400 · 01A · ZYD03689`，帧号用原始文件名）、鼠标拖拽 + 滚轮横滑（touch 走原生 pan-x）、逐帧显影进场
+- **灰 hover**：论文图静置改纯灰度（去青蓝 mix-blend 罩色），hover 显影彩色；SpotlightCard 光斑从青色改中性灰白
+- **照片资产**：4 张 ZYD 系列压至 1600px/q80（26MB → 1.16MB），`src/assets/gallery/`
+- **CDN 决议**：Cloudflare 代理 yuzhuojia.fun（DNS 托管 + 橙云），整站走边缘缓存；代码侧仅做本地压缩与懒加载，不改图片 URL
+- **导航**：ABOUT(/) / PUBLICATIONS(/publications/) / GALLERY(/gallery/)，按 pathname 高亮

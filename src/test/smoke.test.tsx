@@ -1,17 +1,43 @@
 import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import App from '../App';
+import Layout from '../components/Layout';
+import HomePage from '../pages/HomePage';
+import { contact } from '../content';
 
-describe('App', () => {
+describe('Home page', () => {
   it('renders hero name and nav', () => {
-    render(<App />);
+    render(
+      <Layout>
+        <HomePage />
+      </Layout>
+    );
     expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Yuzhuo Jia');
-    expect(screen.getByRole('link', { name: 'YZ_J' })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'YZ_J' })).toHaveAttribute('href', '/');
   });
-  it('merged hero shows CV link and education', () => {
-    render(<App />);
+  it('shows contact block and page links in hero', () => {
+    render(
+      <Layout>
+        <HomePage />
+      </Layout>
+    );
     expect(screen.getByRole('link', { name: 'CV ↗' })).toHaveAttribute('href', '/cv.pdf');
+    expect(screen.getByRole('link', { name: contact.email })).toHaveAttribute(
+      'href',
+      `mailto:${contact.email}`
+    );
+    expect(screen.getByText('GET IN TOUCH')).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'ALL PUBLICATIONS →' })).toHaveAttribute(
+      'href',
+      '/publications/'
+    );
     expect(screen.getByText('University of Sydney')).toBeInTheDocument();
-    expect(screen.getByText('EDUCATION')).toBeInTheDocument();
+  });
+  it('features exactly the featured publications', () => {
+    render(
+      <Layout>
+        <HomePage />
+      </Layout>
+    );
+    expect(screen.getAllByText('Publication')).toHaveLength(2);
   });
 });

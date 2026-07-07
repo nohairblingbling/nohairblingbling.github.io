@@ -1,6 +1,10 @@
 import imgReading from './assets/new_research.jpg';
 import imgLumos from './assets/lumos.jpg';
 import imgPortrait from './assets/portrait.jpg';
+import ph1 from './assets/gallery/ZYD03689.jpg';
+import ph2 from './assets/gallery/ZYD05042.jpg';
+import ph3 from './assets/gallery/ZYD08510.jpg';
+import ph4 from './assets/gallery/ZYD08762.jpg';
 
 export type Author = { name: string; me?: boolean };
 export type Publication = {
@@ -10,9 +14,10 @@ export type Publication = {
   status?: string;
   link?: { label: string; url: string };
   image?: string;
+  featured?: boolean;
 };
-export type ResearchEntry = { title: string; period: string; description: string };
 export type TimelineEntry = { org: string; role: string; period: string };
+export type Photo = { id: string; src: string; caption?: string };
 
 export const meta = {
   title: 'Yuzhuo Jia — HCI Researcher',
@@ -47,27 +52,6 @@ export const timeline: TimelineEntry[] = [
   { org: 'University of Sydney', role: 'MSc, Computer Science', period: 'Feb 2023 — Feb 2025' },
 ];
 
-export const research: ResearchEntry[] = [
-  {
-    title: "Human and LLMs' Bodily Representations",
-    period: 'Sep 2025 — Present',
-    description:
-      'Investigating whether pretrained Large Language Models can develop human-like bodily representations when interacting with virtual environments, addressing a critical gap in embodied cognition research across the spectrum from conceptualization to sensorimotor experience. Participated in designing experimental paradigms for comparing human and LLM cognitive representations on embodied tasks. Developed the computational analysis framework: deployment of open-source vision-language models, layer-wise embedding extraction, dimension reduction via PCA, t-SNE clustering for representation visualization, and Representational Similarity Analysis (RSA) to quantify representation overlaps between humans and LLMs. Contributing to manuscript preparation for top-tier cognitive science journals, with responsibilities in experimental design, computational modeling, data analysis, and writing the Methods and Results sections.',
-  },
-  {
-    title: 'Adaptive Reading System',
-    period: 'Jun 2025 — Sep 2025',
-    description:
-      "Architected and implemented a browser-based adaptive reading system as a lightweight Tampermonkey userscript. The core sensing module leverages MediaPipe Face Mesh for real-time facial landmark detection, enabling precise viewing-distance calculation to dynamically adapt font size and color contrast. Executed a comprehensive user study with 24 middle-aged adults across four reading conditions, and performed thematic analysis on semi-structured interviews, uncovering key usability insights such as the trade-off between the cognitive load of adaptations and performance gains. Co-authored the research paper (Related Work, System Design, Discussion) — accepted at CHI 2026 as a poster.",
-  },
-  {
-    title: 'PI Lab — MathAdventure',
-    period: 'Jan 2025 — Mar 2025',
-    description:
-      "Contributed to MathAdventure, a novel screen-free, voice-based interactive learning system grounded in Contextual Learning and Zone of Proximal Development (ZPD) principles, designed to enhance mathematical understanding of the decimal system in children aged 4-8 through real-world object symbolization. Built the core computer vision module for real-time object recognition, enabling contextualized math problem generation from children's immediate physical surroundings. Orchestrated user studies including Wizard of Oz experiments and iterative prototype testing with 18 child-parent pairs, and authored significant sections of the manuscript, including Related Work and key portions of System Design and Development.",
-  },
-];
-
 export const publications: Publication[] = [
   {
     title:
@@ -81,6 +65,7 @@ export const publications: Publication[] = [
     ],
     venue: 'ACM CHI 2026 (Poster)',
     status: 'Accepted',
+    featured: true,
     image: imgReading,
   },
   {
@@ -96,6 +81,7 @@ export const publications: Publication[] = [
     ],
     venue: 'IEEE RO-MAN 2026',
     status: 'Accepted',
+    featured: true,
     image: imgLumos,
   },
   {
@@ -108,8 +94,6 @@ export const publications: Publication[] = [
 
 export const contact = {
   email: 'yuzhuojia.cs@gmail.com',
-  blurb:
-    'Open to research collaboration and conversations about agentic AI, embodied cognition, and interactive systems.',
 };
 
 export const socials: { label: string; url: string }[] = [
@@ -117,6 +101,13 @@ export const socials: { label: string; url: string }[] = [
   { label: 'INSTAGRAM', url: 'https://www.instagram.com/lorcanxoo/' },
   // 有 Google Scholar 主页后取消注释：
   // { label: 'SCHOLAR', url: 'https://scholar.google.com/citations?user=XXXX' },
+];
+
+export const photos: Photo[] = [
+  { id: 'ZYD03689', src: ph1 },
+  { id: 'ZYD05042', src: ph2 },
+  { id: 'ZYD08510', src: ph3 },
+  { id: 'ZYD08762', src: ph4 },
 ];
 
 export const footer = {

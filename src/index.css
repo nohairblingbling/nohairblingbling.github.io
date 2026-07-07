@@ -57,6 +57,25 @@ html.cursor-hidden button {
   50% { opacity: 0.35; }
 }
 
+.film-scroll {
+  scrollbar-width: none;
+  touch-action: pan-x;
+}
+.film-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+@keyframes page-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  main {
+    animation: page-in 0.45s ease-out both;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 }

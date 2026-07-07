@@ -1,48 +1,36 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
-export const NAV_SECTIONS = [
-  { id: 'research', label: 'RESEARCH' },
-  { id: 'publications', label: 'PUBLICATIONS' },
-  { id: 'contact', label: 'CONTACT' },
+export const NAV_LINKS = [
+  { href: '/', label: 'ABOUT' },
+  { href: '/publications/', label: 'PUBLICATIONS' },
+  { href: '/gallery/', label: 'GALLERY' },
 ];
 
-export default function Nav() {
-  const [active, setActive] = useState('');
-  const [open, setOpen] = useState(false);
+function isActive(href: string, path: string) {
+  return href === '/' ? path === '/' : path.startsWith(href.replace(/\/$/, ''));
+}
 
-  useEffect(() => {
-    const io = new IntersectionObserver(
-      (entries) => {
-        for (const e of entries) {
-          if (e.isIntersecting) setActive(e.target.id);
-        }
-      },
-      { rootMargin: '-40% 0px -55% 0px' }
-    );
-    for (const s of NAV_SECTIONS) {
-      const el = document.getElementById(s.id);
-      if (el) io.observe(el);
-    }
-    return () => io.disconnect();
-  }, []);
+export default function Nav() {
+  const [open, setOpen] = useState(false);
+  const path = typeof window !== 'undefined' ? window.location.pathname : '/';
 
   return (
     <header className="fixed inset-x-0 top-0 z-40 border-b border-hairline bg-base/80 backdrop-blur-md">
       <nav className="mx-auto flex h-14 max-w-5xl items-center justify-between px-6">
-        <a href="#top" data-cursor className="font-mono text-sm tracking-widest text-accent">
+        <a href="/" data-cursor className="font-mono text-sm tracking-widest text-accent">
           YZ_J
         </a>
         <div className="hidden gap-7 md:flex">
-          {NAV_SECTIONS.map((s) => (
+          {NAV_LINKS.map((l) => (
             <a
-              key={s.id}
-              href={`#${s.id}`}
+              key={l.href}
+              href={l.href}
               data-cursor
               className={`font-mono text-[11px] tracking-[0.18em] transition-colors ${
-                active === s.id ? 'text-accent' : 'text-ink-2 hover:text-ink'
+                isActive(l.href, path) ? 'text-accent' : 'text-ink-2 hover:text-ink'
               }`}
             >
-              {s.label}
+              {l.label}
             </a>
           ))}
         </div>
@@ -57,14 +45,14 @@ export default function Nav() {
       </nav>
       {open && (
         <div className="border-t border-hairline bg-base/95 backdrop-blur-md md:hidden">
-          {NAV_SECTIONS.map((s) => (
+          {NAV_LINKS.map((l) => (
             <a
-              key={s.id}
-              href={`#${s.id}`}
+              key={l.href}
+              href={l.href}
               onClick={() => setOpen(false)}
               className="block px-6 py-4 font-mono text-xs tracking-[0.2em] text-ink-2"
             >
-              {s.label}
+              {l.label}
             </a>
           ))}
         </div>

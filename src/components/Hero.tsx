@@ -1,4 +1,4 @@
-import { hero, about, timeline, socials } from '../content';
+import { hero, about, timeline, contact, socials } from '../content';
 import { useIsCoarsePointer, usePrefersReducedMotion } from '../hooks';
 import Particles from './reactbits/Particles';
 import DecryptedText from './reactbits/DecryptedText';
@@ -57,15 +57,13 @@ export default function Hero() {
               ))}
             </div>
             <div className="mt-9 flex flex-wrap items-center gap-x-7 gap-y-4">
-              <StarBorder href="#research">View research</StarBorder>
+              <StarBorder href="/publications/">View publications</StarBorder>
               <a
-                href={socials[0].url}
-                target="_blank"
-                rel="noreferrer"
+                href="/gallery/"
                 data-cursor
                 className="font-mono text-[11px] tracking-[0.18em] text-ink-2 transition-colors hover:text-accent"
               >
-                GITHUB ↗
+                GALLERY ↗
               </a>
               <a
                 href={hero.cv}
@@ -86,7 +84,7 @@ export default function Hero() {
             <p className="mt-8 font-mono text-[11px] tracking-[0.22em] text-accent">EDUCATION</p>
             <ol className="mt-2">
               {timeline.map((t) => (
-                <li key={t.org} className="border-b border-hairline py-3 last:border-b-0">
+                <li key={t.org} className="border-b border-hairline py-3">
                   <p className="text-sm leading-snug text-ink">{t.org}</p>
                   <p className="mt-1 font-mono text-[11px] text-ink-3">
                     {t.role} · {t.period}
@@ -94,6 +92,28 @@ export default function Hero() {
                 </li>
               ))}
             </ol>
+            <p className="mt-8 font-mono text-[11px] tracking-[0.22em] text-accent">GET IN TOUCH</p>
+            <a
+              href={`mailto:${contact.email}`}
+              data-cursor
+              className="mt-2 inline-block break-all font-mono text-[13px] text-ink underline decoration-hairline underline-offset-4 transition-colors hover:text-accent hover:decoration-accent"
+            >
+              <DecryptedText text={contact.email} animateOn="hover" speed={18} />
+            </a>
+            <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2">
+              {socials.map((s) => (
+                <a
+                  key={s.label}
+                  href={s.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  data-cursor
+                  className="font-mono text-[11px] tracking-[0.18em] text-ink-2 transition-colors hover:text-accent"
+                >
+                  {s.label} ↗
+                </a>
+              ))}
+            </div>
           </div>
         </div>
         <div className="mt-14 flex flex-wrap items-baseline justify-between gap-x-8 gap-y-4 border-t border-hairline pt-7 font-mono text-[11px] text-ink-3">
