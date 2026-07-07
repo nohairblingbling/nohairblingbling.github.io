@@ -11,7 +11,7 @@ export default function DecryptedText({
   className = '',
 }: {
   text: string;
-  animateOn?: 'view' | 'hover';
+  animateOn?: 'view' | 'hover' | 'both';
   speed?: number;
   className?: string;
 }) {
@@ -50,7 +50,7 @@ export default function DecryptedText({
       setStarted(true);
       return;
     }
-    if (animateOn === 'view' && inView && !startedRef.current) {
+    if ((animateOn === 'view' || animateOn === 'both') && inView && !startedRef.current) {
       startedRef.current = true;
       run();
     }
@@ -67,7 +67,7 @@ export default function DecryptedText({
     <span
       ref={ref}
       aria-label={text}
-      onMouseEnter={animateOn === 'hover' && !reduced ? run : undefined}
+      onMouseEnter={(animateOn === 'hover' || animateOn === 'both') && !reduced ? run : undefined}
       className={className}
     >
       <span

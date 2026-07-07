@@ -22,19 +22,29 @@ export default function TargetCursor() {
     document.documentElement.classList.add('cursor-hidden');
     let mx = window.innerWidth / 2;
     let my = window.innerHeight / 2;
-    let x = mx;
-    let y = my;
     let target: Element | null = null;
+    let rect: DOMRect | null = null;
     const cur = [0, 1, 2, 3].map(() => ({ x: mx, y: my }));
     const IDLE = 10;
     const PAD = 6;
 
+    // 每帧 getBoundingClientRect 会强制 layout，是卡顿来源；改为锁定时缓存，滚动/缩放时刷新
+    const refreshRect = () => {
+      rect = target ? target.getBoundingClientRect() : null;
+    };
     const onMove = (e: MouseEvent) => {
       mx = e.clientX;
       my = e.clientY;
     };
     const onOver = (e: MouseEvent) => {
-      target = (e.target as Element).closest?.(INTERACTIVE) ?? null;
+      const t = (e.target as Element).closest?.(INTERACTIVE) ?? null;
+      if (t !== target) {
+        target = t;
+        refreshRect();
+      }
+    };
+    const onScroll = () => {
+      if (target) refreshRect();
     };
     const onLeave = () => {
       wrap.style.opacity = '0';
@@ -46,42 +56,44 @@ export default function TargetCursor() {
     let raf = 0;
     const loop = () => {
       raf = requestAnimationFrame(loop);
-      x += (mx - x) * 0.2;
-      y += (my - y) * 0.2;
-      dot.style.transform = `translate3d(${x - 2}px, ${y - 2}px, 0)`;
+      dot.style.transform = `translate3d(${mx - 2}px, ${my - 2}px, 0)`;
 
-      let pts: { x: number; y: number }[];
-      if (target && document.contains(target)) {
-        const r = (target as HTMLElement).getBoundingClientRect();
-        pts = [
-          { x: r.left - PAD, y: r.top - PAD },
-          { x: r.right + PAD, y: r.top - PAD },
-          { x: r.left - PAD, y: r.bottom + PAD },
-          { x: r.right + PAD, y: r.bottom + PAD },
-        ];
-      } else {
-        pts = [
-          { x: x - IDLE, y: y - IDLE },
-          { x: x + IDLE, y: y - IDLE },
-          { x: x - IDLE, y: y + IDLE },
-          { x: x + IDLE, y: y + IDLE },
-        ];
+      if (target && !target.isConnected) {
+        target = null;
+        rect = null;
       }
-      corners.forEach((c, i) => {
-        cur[i].x += (pts[i].x - cur[i].x) * 0.25;
-        cur[i].y += (pts[i].y - cur[i].y) * 0.25;
-        c!.style.transform = `translate3d(${cur[i].x}px, ${cur[i].y}px, 0)`;
-      });
+      const pts = rect
+        ? [
+            { x: rect.left - PAD, y: rect.top - PAD },
+            { x: rect.right + PAD, y: rect.top - PAD },
+            { x: rect.left - PAD, y: rect.bottom + PAD },
+            { x: rect.right + PAD, y: rect.bottom + PAD },
+          ]
+        : [
+            { x: mx - IDLE, y: my - IDLE },
+            { x: mx + IDLE, y: my - IDLE },
+            { x: mx - IDLE, y: my + IDLE },
+            { x: mx + IDLE, y: my + IDLE },
+          ];
+      for (let i = 0; i < 4; i++) {
+        cur[i].x += (pts[i].x - cur[i].x) * 0.3;
+        cur[i].y += (pts[i].y - cur[i].y) * 0.3;
+        corners[i]!.style.transform = `translate3d(${cur[i].x}px, ${cur[i].y}px, 0)`;
+      }
     };
     raf = requestAnimationFrame(loop);
 
     window.addEventListener('mousemove', onMove, { passive: true });
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
     document.addEventListener('mouseover', onOver, true);
     document.documentElement.addEventListener('mouseleave', onLeave);
     document.documentElement.addEventListener('mouseenter', onEnter);
     return () => {
       cancelAnimationFrame(raf);
       window.removeEventListener('mousemove', onMove);
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
       document.removeEventListener('mouseover', onOver, true);
       document.documentElement.removeEventListener('mouseleave', onLeave);
       document.documentElement.removeEventListener('mouseenter', onEnter);

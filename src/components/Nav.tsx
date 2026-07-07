@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 export const NAV_SECTIONS = [
   { id: 'research', label: 'RESEARCH' },
   { id: 'publications', label: 'PUBLICATIONS' },
-  { id: 'projects', label: 'PROJECTS' },
   { id: 'contact', label: 'CONTACT' },
 ];
 

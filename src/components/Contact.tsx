@@ -6,7 +6,7 @@ import DecryptedText from './reactbits/DecryptedText';
 export default function Contact() {
   return (
     <section id="contact" className="mx-auto max-w-5xl scroll-mt-20 px-6 py-28">
-      <SectionHeader index="05" label="CONTACT" title="Get in touch" />
+      <SectionHeader index="04" label="CONTACT" title="Get in touch" />
       <Reveal>
         <p className="max-w-xl text-base leading-relaxed text-ink-2">{contact.blurb}</p>
       </Reveal>

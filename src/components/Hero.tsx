@@ -1,9 +1,8 @@
-import { hero, about, timeline, stats, contact, socials } from '../content';
+import { hero, about, timeline, contact, socials } from '../content';
 import { useIsCoarsePointer, usePrefersReducedMotion } from '../hooks';
 import Particles from './reactbits/Particles';
 import DecryptedText from './reactbits/DecryptedText';
 import StarBorder from './reactbits/StarBorder';
-import CountUp from './reactbits/CountUp';
 import CornerBrackets from './ui/CornerBrackets';
 
 export default function Hero() {
@@ -21,7 +20,7 @@ export default function Hero() {
           <div>
             <p className="font-mono text-[11px] tracking-[0.3em] text-accent">{hero.kicker}</p>
             <h1 className="mt-5 text-5xl font-medium tracking-tight text-ink md:text-6xl">
-              <DecryptedText text={hero.name} />
+              <DecryptedText text={hero.name} animateOn="both" />
             </h1>
             <p className="mt-4 font-mono text-xs text-ink-3">{hero.position}</p>
             <p className="mt-6 max-w-xl text-base leading-relaxed text-ink-2">{hero.bio}</p>
@@ -67,11 +66,7 @@ export default function Hero() {
           <div>
             <div className="group relative max-w-[250px] border border-hairline p-1.5">
               <CornerBrackets />
-              <img
-                src={about.portrait}
-                alt="Portrait of Yuzhuo Jia"
-                className="w-full grayscale transition-all duration-500 group-hover:grayscale-0"
-              />
+              <img src={about.portrait} alt="Portrait of Yuzhuo Jia" className="w-full" />
             </div>
             <p className="mt-8 font-mono text-[11px] tracking-[0.22em] text-accent">EDUCATION</p>
             <ol className="mt-2">
@@ -86,25 +81,11 @@ export default function Hero() {
             </ol>
           </div>
         </div>
-        <div className="mt-14 flex flex-wrap items-baseline justify-between gap-x-8 gap-y-4 border-t border-hairline pt-7">
-          <div className="flex flex-wrap gap-x-10 gap-y-3">
-            {stats.map((s) => (
-              <span key={s.label} className="flex items-baseline gap-2.5">
-                <span className="text-2xl font-medium text-ink md:text-3xl">
-                  <CountUp value={s.value} />
-                </span>
-                <span className="font-mono text-[11px] uppercase tracking-[0.15em] text-ink-3">
-                  {s.label}
-                </span>
-              </span>
-            ))}
-          </div>
-          <div className="flex items-baseline gap-8 font-mono text-[11px] text-ink-3">
-            <span>
-              <span className="animate-pulse-dot text-accent">●</span> {hero.status}
-            </span>
-            <span className="hidden sm:inline">SCROLL ↓</span>
-          </div>
+        <div className="mt-14 flex flex-wrap items-baseline justify-between gap-x-8 gap-y-4 border-t border-hairline pt-7 font-mono text-[11px] text-ink-3">
+          <span>
+            <span className="animate-pulse-dot text-accent">●</span> {hero.status}
+          </span>
+          <span className="hidden sm:inline">SCROLL ↓</span>
         </div>
       </div>
     </section>

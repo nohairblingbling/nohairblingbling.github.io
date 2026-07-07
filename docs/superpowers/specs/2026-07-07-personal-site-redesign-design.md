@@ -155,3 +155,15 @@ public/
 - **CV 下载**：public/cv.pdf，首屏 CTA 提供 CV ↗ 外链
 - **卡片变体**：Publication/Project 卡支持无图（LUMOS、NMI、LLM 微调项目）；Project 卡显示时间段
 - **确认排除**：简历中 Awards & Activities 与 Skills 不上站（CV 链接可达）
+
+## 10. 修订记录二（2026-07-07 深夜，用户逐项指定）
+
+- 首屏教育经历不显示本科（南方学院）条目，仅清华 RA + 悉大 MSc
+- 移除数据统计行（6/6/3 CountUp）
+- 照片默认彩色（黑白默认在中文语境不吉利），去掉灰度滤镜
+- 姓名 DecryptedText 增加 `both` 模式：入场解码一次 + hover 可重复触发
+- Research 精简为 3 条：Bodily Representations / Adaptive Reading / MathAdventure（删除 Embodied Intelligence Group、BiFocalNet、FODAP）
+- Publications 精简为 3 篇：CHI'26 / LUMOS（配用户提供的实验图 lumos.jpg）/ Nature MI in prep（删除 BiFocalNet、FODAP、YOLOv5）
+- Projects 区块整体移除（导航同步），Contact 编号 04
+- TargetCursor 性能优化：目标矩形改为锁定时缓存 + scroll/resize 刷新（消除每帧 getBoundingClientRect 强制布局）；小圆点即时跟随（去 lerp 拖尾），仅四角保留缓动
+- 清理不再使用的图片资产（BiFocalNet/bibm1/yolo5/interview/dcd）
