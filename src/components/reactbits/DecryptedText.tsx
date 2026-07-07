@@ -70,7 +70,10 @@ export default function DecryptedText({
       onMouseEnter={animateOn === 'hover' && !reduced ? run : undefined}
       className={className}
     >
-      <span aria-hidden="true" className={started || reduced ? '' : 'opacity-0'}>
+      <span
+        aria-hidden="true"
+        className={started || reduced || animateOn === 'hover' ? '' : 'opacity-0'}
+      >
         {display}
       </span>
     </span>
