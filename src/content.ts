@@ -1,6 +1,6 @@
 import imgReading from './assets/new_research.jpg';
 import imgLumos from './assets/lumos.jpg';
-import imgPortrait from './assets/touxian.jpg';
+import imgPortrait from './assets/portrait.jpg';
 
 export type Author = { name: string; me?: boolean };
 export type Publication = {

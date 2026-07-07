@@ -1,4 +1,4 @@
-import { hero, about, timeline, contact, socials } from '../content';
+import { hero, about, timeline, socials } from '../content';
 import { useIsCoarsePointer, usePrefersReducedMotion } from '../hooks';
 import Particles from './reactbits/Particles';
 import DecryptedText from './reactbits/DecryptedText';
@@ -44,13 +44,6 @@ export default function Hero() {
                 className="font-mono text-[11px] tracking-[0.18em] text-ink-2 transition-colors hover:text-accent"
               >
                 GITHUB ↗
-              </a>
-              <a
-                href={`mailto:${contact.email}`}
-                data-cursor
-                className="font-mono text-[11px] tracking-[0.18em] text-ink-2 transition-colors hover:text-accent"
-              >
-                EMAIL ↗
               </a>
               <a
                 href={hero.cv}
