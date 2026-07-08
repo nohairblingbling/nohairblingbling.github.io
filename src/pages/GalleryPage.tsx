@@ -58,9 +58,14 @@ export default function GalleryPage() {
                 </span>
               )}
             </div>
-            <p className="mt-3 font-mono text-[11px] tracking-[0.18em] text-ink-3">
-              {String(roll.photos.length).padStart(2, '0')} FRAMES · HOVER TO PAUSE · DRAG TO SCRUB ·
-              CLICK TO ENLARGE
+            <p className="mt-3 flex flex-wrap items-center gap-x-2.5 gap-y-1 font-mono text-[11px] tracking-[0.18em] text-ink-2">
+              <span className="text-ink-3">{String(roll.photos.length).padStart(2, '0')} FRAMES</span>
+              <span className="text-ink-3">·</span>
+              <span className="text-accent">HOVER TO PAUSE</span>
+              <span className="text-ink-3">·</span>
+              <span className="text-accent">DRAG TO SCRUB</span>
+              <span className="text-ink-3">·</span>
+              <span className="text-accent">CLICK TO ENLARGE</span>
             </p>
           </div>
         )}
@@ -75,7 +80,7 @@ export default function GalleryPage() {
           ))}
         </div>
       ) : (
-        <RollStrip roll={roll} onSelect={(i) => setLightbox(i)} />
+        <RollStrip key={roll.id} roll={roll} onSelect={(i) => setLightbox(i)} />
       )}
 
       {roll && lightbox !== null && (

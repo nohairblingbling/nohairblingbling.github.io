@@ -132,12 +132,20 @@ export default function RollStrip({
   return (
     <div
       ref={containerRef}
-      className="cursor-grab touch-pan-y select-none overflow-hidden border-y border-hairline bg-[#0c0b09] active:cursor-grabbing"
+      className="relative cursor-grab touch-pan-y select-none overflow-hidden border-y border-hairline bg-[#0c0b09] active:cursor-grabbing"
     >
       <div ref={trackRef} className="flex w-max py-6 will-change-transform">
         {run(false)}
         {run(true)}
       </div>
+      <div
+        aria-hidden="true"
+        className="light-leak pointer-events-none absolute inset-y-0 left-0 z-20 w-[38%]"
+        style={{
+          background:
+            'linear-gradient(105deg, transparent 0%, rgba(45, 212, 232, 0.16) 45%, rgba(255, 238, 204, 0.10) 62%, transparent 100%)',
+        }}
+      />
     </div>
   );
 }

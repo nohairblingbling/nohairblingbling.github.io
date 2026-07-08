@@ -7,7 +7,7 @@
   --color-accent: #2dd4e8;
   --color-ink: #e8edf2;
   --color-ink-2: #8fa0ad;
-  --color-ink-3: #5b6976;
+  --color-ink-3: #6b7a88;
   --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono Variable", ui-monospace, "SF Mono", Menlo, monospace;
   --font-serif: "Instrument Serif", Georgia, "Times New Roman", serif;
@@ -68,6 +68,19 @@ html.cursor-hidden button {
 @keyframes page-in {
   from { opacity: 0; }
   to { opacity: 1; }
+}
+
+@keyframes light-leak {
+  0% { transform: translateX(-120%) skewX(-14deg); opacity: 0; }
+  15% { opacity: 1; }
+  85% { opacity: 1; }
+  100% { transform: translateX(300%) skewX(-14deg); opacity: 0; }
+}
+.light-leak {
+  animation: light-leak 1.6s cubic-bezier(0.4, 0, 0.2, 1) 0.3s both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .light-leak { animation: none; opacity: 0; }
 }
 
 @media (prefers-reduced-motion: no-preference) {
