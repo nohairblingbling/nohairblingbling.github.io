@@ -2,5 +2,6 @@ node_modules/
 dist/
 .DS_Store
 .history/
+.claude/
 *.local
 npm-debug.log*
