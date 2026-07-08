@@ -6,16 +6,25 @@ export default function StarBorder({
   children,
   href,
   className = '',
+  ariaLabel,
+  onMouseEnter,
+  onMouseLeave,
 }: {
   children: ReactNode;
   href: string;
   className?: string;
+  ariaLabel?: string;
+  onMouseEnter?: () => void;
+  onMouseLeave?: () => void;
 }) {
   const reduced = usePrefersReducedMotion();
   return (
     <a
       href={href}
       data-cursor
+      aria-label={ariaLabel}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
       className={`relative inline-block overflow-hidden rounded-sm p-px ${className}`}
     >
       {!reduced && (

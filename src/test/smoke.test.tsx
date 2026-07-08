@@ -14,18 +14,17 @@ describe('Home page', () => {
     expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Yuzhuo Jia');
     expect(screen.getByRole('link', { name: 'YZ_J' })).toHaveAttribute('href', '/');
   });
-  it('shows contact block and page links in hero', () => {
+  it('shows contact reveal button and page links in hero', () => {
     render(
       <Layout>
         <HomePage />
       </Layout>
     );
     expect(screen.getByRole('link', { name: 'CV ↗' })).toHaveAttribute('href', '/cv.pdf');
-    expect(screen.getByRole('link', { name: contact.email })).toHaveAttribute(
-      'href',
-      `mailto:${contact.email}`
-    );
-    expect(screen.getByText('GET IN TOUCH')).toBeInTheDocument();
+    const mailtoLink = screen.getByRole('link', { name: `Email ${contact.email}` });
+    expect(mailtoLink).toHaveAttribute('href', `mailto:${contact.email}`);
+    expect(mailtoLink).toHaveTextContent('GET IN TOUCH');
+    expect(screen.queryByRole('link', { name: 'GALLERY ↗' })).not.toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'ALL PUBLICATIONS →' })).toHaveAttribute(
       'href',
       '/publications/'

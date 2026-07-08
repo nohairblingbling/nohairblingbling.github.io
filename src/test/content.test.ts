@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { hero, about, timeline, publications, photos, contact, socials } from '../content';
+import { hero, about, timeline, publications, rolls, contact, socials } from '../content';
 
 describe('content integrity', () => {
   it('hero has editable position line and CV link', () => {
@@ -24,12 +24,17 @@ describe('content integrity', () => {
       if (p.link) expect(p.link.url).toMatch(/^https:\/\//);
     }
   });
-  it('gallery has at least 4 photos with ids and sources', () => {
-    expect(photos.length).toBeGreaterThanOrEqual(4);
-    for (const p of photos) {
-      expect(p.id.length).toBeGreaterThan(0);
-      expect(p.src).toBeTruthy();
+  it('gallery has at least one roll with 5+ photos', () => {
+    expect(rolls.length).toBeGreaterThanOrEqual(1);
+    for (const r of rolls) {
+      expect(r.title.length).toBeGreaterThan(0);
+      expect(r.photos.length).toBeGreaterThanOrEqual(1);
+      for (const p of r.photos) {
+        expect(p.id.length).toBeGreaterThan(0);
+        expect(p.src).toBeTruthy();
+      }
     }
+    expect(rolls[0].photos.length).toBeGreaterThanOrEqual(5);
   });
   it('contact and socials are set', () => {
     expect(contact.email).toBe('yuzhuojia.cs@gmail.com');

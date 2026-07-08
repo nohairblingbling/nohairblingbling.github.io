@@ -1,8 +1,8 @@
 import { describe, it, expect } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import PublicationsPage from '../pages/PublicationsPage';
 import GalleryPage from '../pages/GalleryPage';
-import { publications, photos } from '../content';
+import { publications, rolls } from '../content';
 
 describe('PublicationsPage', () => {
   it('renders every publication with highlighted author', () => {
@@ -21,12 +21,25 @@ describe('PublicationsPage', () => {
 });
 
 describe('GalleryPage', () => {
-  it('renders a frame per photo with film edge markings', () => {
+  it('shows roll canisters on the shelf', () => {
     render(<GalleryPage />);
-    expect(screen.getAllByRole('figure')).toHaveLength(photos.length);
-    for (const p of photos) {
-      expect(screen.getByText(new RegExp(p.id))).toBeInTheDocument();
+    for (const r of rolls) {
+      expect(screen.getByRole('button', { name: `Open roll ${r.title}` })).toBeInTheDocument();
+      expect(screen.getByText(r.title)).toBeInTheDocument();
     }
-    expect(screen.getAllByText('YZJ 400')).toHaveLength(photos.length);
+  });
+  it('unspools a roll into frames and opens the lightbox', () => {
+    render(<GalleryPage />);
+    const roll = rolls[0];
+    fireEvent.click(screen.getByRole('button', { name: `Open roll ${roll.title}` }));
+    expect(screen.getAllByRole('figure')).toHaveLength(roll.photos.length);
+    expect(screen.getAllByText('YZJ 400')).toHaveLength(roll.photos.length);
+    fireEvent.click(
+      screen.getByRole('button', { name: `Enlarge photograph ${roll.photos[0].id}` })
+    );
+    expect(screen.getByRole('dialog')).toBeInTheDocument();
+    expect(screen.getByText(new RegExp(`01 / 0${roll.photos.length}`))).toBeInTheDocument();
+    fireEvent.keyDown(document, { key: 'Escape' });
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
   });
 });

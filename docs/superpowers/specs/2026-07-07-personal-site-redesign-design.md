@@ -189,3 +189,14 @@ public/
 - **照片资产**：4 张 ZYD 系列压至 1600px/q80（26MB → 1.16MB），`src/assets/gallery/`
 - **CDN 决议**：Cloudflare 代理 yuzhuojia.fun（DNS 托管 + 橙云），整站走边缘缓存；代码侧仅做本地压缩与懒加载，不改图片 URL
 - **导航**：ABOUT(/) / PUBLICATIONS(/publications/) / GALLERY(/gallery/)，按 pathname 高亮
+
+## 13. 修订记录五（2026-07-08，联系按钮 + 画廊二次改版，用户确认）
+
+- **GET IN TOUCH 揭底按钮**（ContactRevealButton）：替换原 View publications 主按钮。静置显示 `GET IN TOUCH`，hover 逐字乱码"解密"成邮箱；移开后邮箱保留 3 秒再乱码"复原"回 GET IN TOUCH；点击 = mailto。用隐形邮箱占位撑宽避免抖动
+- **首屏 CTA 一行**：顺序 GET IN TOUCH → GITHUB ↗ → INSTAGRAM ↗ → CV ↗（socials 从右栏移到左栏同一行）；右栏只留照片 + EDUCATION
+- **画廊分类（胶卷罐）**：Roll 数据模型（title/year/photos）；shelf 展示胶卷罐 Canister（YZJ 400 + 衬线斜体英文卷名 North Xinjiang + NN EXP · 年份 + 露出的胶片尾 + UNSPOOL），点击进卷；URL hash 记录当前卷，可直达/返回
+- **卷内循环滚动条**（RollStrip）：JS rAF 驱动、双 run 无缝循环（translateX + 模运算取余）；hover 暂停、暂停时仍可按住拖动（pointer 事件改 offset，拖动阈值 5px 区分点击/拖拽，拖拽后抑制误触点击）；dt 钳制避免切标签页回来猛跳；reduced-motion 降级为原生横向滚动条
+- **灰度→彩色**：卷内照片默认灰度（`@media(hover:hover)`），hover 显影为彩色
+- **灯箱**（Lightbox）：单击照片放大为满彩大图，← PREV / NN / NEXT → + 键盘 ←→ 切换、Esc/点背景关闭、锁 body 滚动
+- **照片**：北疆 5 张 XJ1–5 压至 1600px/q80；旧 ZYD 4 张移除
+- **注**：headless 预览标签页后台时浏览器把 requestAnimationFrame 节流至 0，自动滚动/拖动的视觉更新需可见标签页；逻辑已验证（transform 曾推进到 -1158px）

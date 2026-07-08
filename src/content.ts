@@ -1,10 +1,11 @@
 import imgReading from './assets/new_research.jpg';
 import imgLumos from './assets/lumos.jpg';
 import imgPortrait from './assets/portrait.jpg';
-import ph1 from './assets/gallery/ZYD03689.jpg';
-import ph2 from './assets/gallery/ZYD05042.jpg';
-import ph3 from './assets/gallery/ZYD08510.jpg';
-import ph4 from './assets/gallery/ZYD08762.jpg';
+import xj1 from './assets/gallery/XJ1.jpg';
+import xj2 from './assets/gallery/XJ2.jpg';
+import xj3 from './assets/gallery/XJ3.jpg';
+import xj4 from './assets/gallery/XJ4.jpg';
+import xj5 from './assets/gallery/XJ5.jpg';
 
 export type Author = { name: string; me?: boolean };
 export type Publication = {
@@ -18,6 +19,7 @@ export type Publication = {
 };
 export type TimelineEntry = { org: string; role: string; period: string };
 export type Photo = { id: string; src: string; caption?: string };
+export type Roll = { id: string; title: string; subtitle?: string; year?: string; photos: Photo[] };
 
 export const meta = {
   title: 'Yuzhuo Jia — HCI Researcher',
@@ -103,11 +105,19 @@ export const socials: { label: string; url: string }[] = [
   // { label: 'SCHOLAR', url: 'https://scholar.google.com/citations?user=XXXX' },
 ];
 
-export const photos: Photo[] = [
-  { id: 'ZYD03689', src: ph1 },
-  { id: 'ZYD05042', src: ph2 },
-  { id: 'ZYD08510', src: ph3 },
-  { id: 'ZYD08762', src: ph4 },
+export const rolls: Roll[] = [
+  {
+    id: 'north-xinjiang',
+    title: 'North Xinjiang',
+    year: '2025',
+    photos: [
+      { id: 'XJ1', src: xj1 },
+      { id: 'XJ2', src: xj2 },
+      { id: 'XJ3', src: xj3 },
+      { id: 'XJ4', src: xj4 },
+      { id: 'XJ5', src: xj5 },
+    ],
+  },
 ];
 
 export const footer = {

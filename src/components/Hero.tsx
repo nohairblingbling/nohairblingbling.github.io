@@ -1,8 +1,8 @@
-import { hero, about, timeline, contact, socials } from '../content';
+import { hero, about, timeline, socials } from '../content';
 import { useIsCoarsePointer, usePrefersReducedMotion } from '../hooks';
 import Particles from './reactbits/Particles';
 import DecryptedText from './reactbits/DecryptedText';
-import StarBorder from './reactbits/StarBorder';
+import ContactRevealButton from './ContactRevealButton';
 import CornerBrackets from './ui/CornerBrackets';
 
 function renderAccented(text: string) {
@@ -57,14 +57,19 @@ export default function Hero() {
               ))}
             </div>
             <div className="mt-9 flex flex-wrap items-center gap-x-7 gap-y-4">
-              <StarBorder href="/publications/">View publications</StarBorder>
-              <a
-                href="/gallery/"
-                data-cursor
-                className="font-mono text-[11px] tracking-[0.18em] text-ink-2 transition-colors hover:text-accent"
-              >
-                GALLERY ↗
-              </a>
+              <ContactRevealButton />
+              {socials.map((s) => (
+                <a
+                  key={s.label}
+                  href={s.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  data-cursor
+                  className="font-mono text-[11px] tracking-[0.18em] text-ink-2 transition-colors hover:text-accent"
+                >
+                  {s.label} ↗
+                </a>
+              ))}
               <a
                 href={hero.cv}
                 target="_blank"
@@ -92,28 +97,6 @@ export default function Hero() {
                 </li>
               ))}
             </ol>
-            <p className="mt-8 font-mono text-[11px] tracking-[0.22em] text-accent">GET IN TOUCH</p>
-            <a
-              href={`mailto:${contact.email}`}
-              data-cursor
-              className="mt-2 inline-block break-all font-mono text-[13px] text-ink underline decoration-hairline underline-offset-4 transition-colors hover:text-accent hover:decoration-accent"
-            >
-              <DecryptedText text={contact.email} animateOn="hover" speed={18} />
-            </a>
-            <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2">
-              {socials.map((s) => (
-                <a
-                  key={s.label}
-                  href={s.url}
-                  target="_blank"
-                  rel="noreferrer"
-                  data-cursor
-                  className="font-mono text-[11px] tracking-[0.18em] text-ink-2 transition-colors hover:text-accent"
-                >
-                  {s.label} ↗
-                </a>
-              ))}
-            </div>
           </div>
         </div>
         <div className="mt-14 flex flex-wrap items-baseline justify-between gap-x-8 gap-y-4 border-t border-hairline pt-7 font-mono text-[11px] text-ink-3">
