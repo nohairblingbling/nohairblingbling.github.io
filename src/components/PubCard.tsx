@@ -5,12 +5,12 @@ export default function PubCard({ pub }: { pub: Publication }) {
   return (
     <SpotlightCard className="flex h-full flex-col">
       {pub.image && (
-        <div className="relative overflow-hidden border-b border-hairline">
+        <div className="relative overflow-hidden border-b border-hairline bg-[#080b0e]">
           <img
             src={pub.image}
             alt=""
             loading="lazy"
-            className="aspect-[16/9] w-full object-cover [filter:grayscale(1)_brightness(0.9)_contrast(1.05)] transition-[filter] duration-700 group-hover:[filter:none]"
+            className="aspect-[16/9] w-full object-contain [filter:grayscale(1)_brightness(0.9)_contrast(1.05)] transition-[filter] duration-700 group-hover:[filter:none]"
           />
         </div>
       )}

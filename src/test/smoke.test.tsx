@@ -1,5 +1,5 @@
-import { describe, it, expect } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { describe, it, expect, vi } from 'vitest';
+import { render, screen, fireEvent } from '@testing-library/react';
 import Layout from '../components/Layout';
 import HomePage from '../pages/HomePage';
 import { contact } from '../content';
@@ -21,9 +21,9 @@ describe('Home page', () => {
       </Layout>
     );
     expect(screen.getByRole('link', { name: 'CV ↗' })).toHaveAttribute('href', '/cv.pdf');
-    const mailtoLink = screen.getByRole('link', { name: `Email ${contact.email}` });
-    expect(mailtoLink).toHaveAttribute('href', `mailto:${contact.email}`);
-    expect(mailtoLink).toHaveTextContent('GET IN TOUCH');
+    const contactBtn = screen.getByRole('link', { name: `Copy email ${contact.email}` });
+    expect(contactBtn).toHaveAttribute('href', `mailto:${contact.email}`);
+    expect(contactBtn).toHaveTextContent('GET IN TOUCH');
     expect(screen.queryByRole('link', { name: 'GALLERY ↗' })).not.toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'ALL PUBLICATIONS →' })).toHaveAttribute(
       'href',
@@ -38,5 +38,19 @@ describe('Home page', () => {
       </Layout>
     );
     expect(screen.getAllByText('Publication')).toHaveLength(2);
+  });
+  it('clicking the contact button copies the email and confirms', () => {
+    const writeText = vi.fn().mockResolvedValue(undefined);
+    vi.stubGlobal('navigator', { ...navigator, clipboard: { writeText } });
+    render(
+      <Layout>
+        <HomePage />
+      </Layout>
+    );
+    const contactBtn = screen.getByRole('link', { name: `Copy email ${contact.email}` });
+    fireEvent.click(contactBtn);
+    expect(writeText).toHaveBeenCalledWith(contact.email);
+    expect(contactBtn).toHaveTextContent(/EMAIL COPIED/);
+    vi.unstubAllGlobals();
   });
 });

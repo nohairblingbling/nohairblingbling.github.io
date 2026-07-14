@@ -1,5 +1,5 @@
 // Vendored equivalent of reactbits.dev "Star Border" (https://reactbits.dev/animations/star-border), MIT.
-import type { ReactNode } from 'react';
+import type { MouseEvent, ReactNode } from 'react';
 import { usePrefersReducedMotion } from '../../hooks';
 
 export default function StarBorder({
@@ -9,6 +9,7 @@ export default function StarBorder({
   ariaLabel,
   onMouseEnter,
   onMouseLeave,
+  onClick,
 }: {
   children: ReactNode;
   href: string;
@@ -16,6 +17,7 @@ export default function StarBorder({
   ariaLabel?: string;
   onMouseEnter?: () => void;
   onMouseLeave?: () => void;
+  onClick?: (e: MouseEvent<HTMLAnchorElement>) => void;
 }) {
   const reduced = usePrefersReducedMotion();
   return (
@@ -25,6 +27,7 @@ export default function StarBorder({
       aria-label={ariaLabel}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
+      onClick={onClick}
       className={`relative inline-block overflow-hidden rounded-sm p-px ${className}`}
     >
       {!reduced && (
