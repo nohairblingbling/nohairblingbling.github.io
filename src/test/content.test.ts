@@ -9,7 +9,7 @@ describe('content integrity', () => {
   });
   it('timeline has the two curated entries', () => {
     expect(timeline).toHaveLength(2);
-    expect(timeline[0].org).toBe('Tsinghua University');
+    expect(timeline[0].org).toBe('Kyushu University');
   });
   it('publications all credit Yuzhuo Jia and exactly 2 are featured', () => {
     expect(publications.length).toBeGreaterThanOrEqual(3);
@@ -37,7 +37,7 @@ describe('content integrity', () => {
     expect(rolls[0].photos.length).toBeGreaterThanOrEqual(5);
   });
   it('contact and socials are set', () => {
-    expect(contact.email).toBe('yuzhuojia.cs@gmail.com');
+    expect(contact.email).toBe('yuzhuo@hdi.ait.kyushu-u.ac.jp');
     expect(socials[0].url).toMatch(/^https:\/\//);
     expect(about.interests.length).toBeGreaterThanOrEqual(5);
   });
