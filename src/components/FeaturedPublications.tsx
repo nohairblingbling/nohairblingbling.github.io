@@ -7,7 +7,7 @@ export default function FeaturedPublications() {
   const featured = publications.filter((p) => p.featured);
   return (
     <section id="publications" className="mx-auto max-w-5xl scroll-mt-20 px-6 py-28">
-      <SectionHeader index="02" label="PUBLICATIONS" title="" titleAccent="Publications" />
+      <SectionHeader index="02" label="SELECTED WORK" title="" titleAccent="Selected Work" />
       <div className="grid gap-5 md:grid-cols-2">
         {featured.map((p, i) => (
           <Reveal key={p.title} variant="develop" delay={i * 80} className="h-full">
