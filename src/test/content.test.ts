@@ -11,13 +11,13 @@ describe('content integrity', () => {
     expect(timeline).toHaveLength(2);
     expect(timeline[0].org).toBe('Kyushu University');
   });
-  it('publications all credit Yuzhuo Jia and exactly 2 are featured', () => {
+  it('publications all credit Yuzhuo Jia and exactly 4 are featured', () => {
     expect(publications.length).toBeGreaterThanOrEqual(3);
     for (const p of publications) {
       expect(p.venue.length).toBeGreaterThan(0);
       expect(p.authors.some((a) => a.me)).toBe(true);
     }
-    expect(publications.filter((p) => p.featured)).toHaveLength(2);
+    expect(publications.filter((p) => p.featured)).toHaveLength(4);
   });
   it('publication links, when present, are https', () => {
     for (const p of publications) {

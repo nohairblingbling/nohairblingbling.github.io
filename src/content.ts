@@ -100,6 +100,7 @@ export const publications: Publication[] = [
     ],
     venue: 'Nature Machine Intelligence · 2026',
     status: 'Submitted',
+    featured: true,
     image: imgBodily,
   },
   {
@@ -112,6 +113,7 @@ export const publications: Publication[] = [
     ],
     venue: 'International Conference on Bioinformatics and Biomedicine (BIBM) 2024',
     status: 'Accepted',
+    featured: true,
     image: imgFodap,
     link: { label: 'DOI', url: 'https://doi.org/10.1109/BIBM62325.2024.10822532' },
   },
