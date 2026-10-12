@@ -37,7 +37,7 @@ describe('Home page', () => {
         <HomePage />
       </Layout>
     );
-    expect(screen.getAllByText('Publication')).toHaveLength(4);
+    expect(screen.getAllByText('Publication')).toHaveLength(3);
   });
   it('clicking the contact button copies the email and confirms', () => {
     const writeText = vi.fn().mockResolvedValue(undefined);

@@ -1,6 +1,5 @@
 import imgReading from './assets/new_research.jpg';
 import imgLumos from './assets/lumos.jpg';
-import imgBodily from './assets/bodily-representations.jpg';
 import imgFodap from './assets/fodap-framework.png';
 import imgPedestrian from './assets/yolov5-pedestrian-framework.jpg';
 import imgPortrait from './assets/portrait.jpg';
@@ -88,20 +87,6 @@ export const publications: Publication[] = [
     status: 'Accepted',
     featured: true,
     image: imgLumos,
-  },
-  {
-    title: "Human and LLMs' Bodily Representations",
-    authors: [
-      { name: 'Yuzhuo Jia*', me: true },
-      { name: 'Keye Yu*' },
-      { name: 'X. Zhan' },
-      { name: 'Y.-Q. Zhang' },
-      { name: 'Chen Zheng' },
-    ],
-    venue: 'Nature Machine Intelligence · 2026',
-    status: 'Submitted',
-    featured: true,
-    image: imgBodily,
   },
   {
     title: 'FODAP Graph for Enhanced Medical Imaging Narrative Generation',
