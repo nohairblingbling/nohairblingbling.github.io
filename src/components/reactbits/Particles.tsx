@@ -1,6 +1,9 @@
 // Vendored equivalent of reactbits.dev "Particles" (https://reactbits.dev/backgrounds/particles), MIT. ogl-based.
 import { useEffect, useRef } from 'react';
 import { Renderer, Camera, Geometry, Program, Mesh } from 'ogl';
+import { observeAnimationVisibility } from '../../lib/animationVisibility';
+
+const DEFAULT_COLORS = ['#7fa3b0', '#8fa0ad', '#2dd4e8'];
 
 const vertex = /* glsl */ `
   attribute vec3 position;
@@ -47,7 +50,7 @@ export default function Particles({
   count = 160,
   baseSize = 55,
   speed = 0.08,
-  colors = ['#7fa3b0', '#8fa0ad', '#2dd4e8'],
+  colors = DEFAULT_COLORS,
   className = '',
 }: {
   count?: number;
@@ -126,18 +129,27 @@ export default function Particles({
     let elapsed = 0;
     const update = (t: number) => {
       raf = requestAnimationFrame(update);
-      const delta = t - last;
+      const delta = Math.min(t - last, 50);
       last = t;
       elapsed += delta * speed;
       program.uniforms.uTime.value = elapsed * 0.001;
       particles.rotation.y += 0.00025 * delta;
       renderer.render({ scene: particles, camera });
     };
-    raf = requestAnimationFrame(update);
+    const stopObserving = observeAnimationVisibility(container, visible => {
+      cancelAnimationFrame(raf);
+      if (visible) {
+        last = performance.now();
+        raf = requestAnimationFrame(update);
+      }
+    });
 
     return () => {
       cancelAnimationFrame(raf);
+      stopObserving();
       window.removeEventListener('resize', resize);
+      geometry.remove();
+      program.remove();
       if (container.contains(gl.canvas)) container.removeChild(gl.canvas);
       gl.getExtension('WEBGL_lose_context')?.loseContext();
     };

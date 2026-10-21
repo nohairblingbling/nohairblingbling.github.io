@@ -1,0 +1,20 @@
+.film-grain { position: fixed; inset: 0; z-index: 45; pointer-events: none; overflow: hidden; contain: strict; }
+.film-grain-texture { position: absolute; background-repeat: repeat; }
+.film-grain-moving { animation: film-grain-shift 0.8s steps(1, end) infinite; will-change: transform; }
+@keyframes film-grain-shift {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  8.333% { transform: translate3d(-13px, 17px, 0); }
+  16.667% { transform: translate3d(23px, -11px, 0); }
+  25% { transform: translate3d(-31px, -29px, 0); }
+  33.333% { transform: translate3d(7px, 37px, 0); }
+  41.667% { transform: translate3d(41px, -19px, 0); }
+  50% { transform: translate3d(-23px, 11px, 0); }
+  58.333% { transform: translate3d(17px, -43px, 0); }
+  66.667% { transform: translate3d(-37px, 29px, 0); }
+  75% { transform: translate3d(31px, 7px, 0); }
+  83.333% { transform: translate3d(-7px, -37px, 0); }
+  91.667% { transform: translate3d(19px, 43px, 0); }
+}
+@media (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .film-grain-moving { animation: none; will-change: auto; }
+}

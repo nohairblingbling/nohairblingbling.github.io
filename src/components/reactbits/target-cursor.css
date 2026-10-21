@@ -1,0 +1,96 @@
+.focus-cursor {
+  --quill-angle: 0deg;
+  --quill-width: 1;
+  --quill-height: 1;
+  --quill-time: 240ms;
+  --signature-progress: 1;
+  --signature-time: 0ms;
+  --signature-opacity: 0;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 44px;
+  height: 44px;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0;
+  will-change: transform;
+}
+.focus-cursor-glyph {
+  width: 100%;
+  height: 100%;
+  /* Inclination and the click response pivot around the writing tip. */
+  transform-origin: 22px 22px;
+  transition: transform 170ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.focus-cursor svg {
+  display: block;
+  width: 44px;
+  height: 44px;
+  overflow: visible;
+  filter: drop-shadow(0 1px 0.75px rgb(5 6 8 / 0.6));
+}
+.focus-cursor-quill {
+  transform-origin: 22px 22px;
+  transform: rotate(var(--quill-angle)) scale(var(--quill-width), var(--quill-height));
+  transition: transform var(--quill-time) cubic-bezier(0.22, 1, 0.36, 1);
+}
+.focus-cursor-feather {
+  fill: color-mix(in srgb, var(--color-ink) 72%, var(--color-ink-2));
+  stroke: rgb(5 6 8 / 0.45);
+  stroke-width: 0.35;
+  stroke-linejoin: round;
+  transition: fill 240ms ease-out;
+}
+.focus-cursor-veins {
+  stroke: var(--color-base);
+  stroke-width: 0.45;
+  stroke-linecap: round;
+  opacity: 0.15;
+}
+.focus-cursor-signature {
+  stroke-width: 0.75;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: var(--signature-progress);
+  opacity: var(--signature-opacity);
+  transition: opacity 160ms ease-out, stroke-dashoffset var(--signature-time) cubic-bezier(0.25, 0.6, 0.35, 1), stroke-width 120ms ease-out;
+}
+.focus-cursor[data-phase="hover"] {
+  --quill-angle: -6deg;
+  --quill-time: 300ms;
+  --signature-progress: 0;
+  --signature-time: 420ms;
+  --signature-opacity: 0.85;
+}
+.focus-cursor[data-phase="hover"] .focus-cursor-feather { fill: var(--color-ink); }
+.focus-cursor[data-phase="hover"] .focus-cursor-signature { transition-delay: 45ms, 45ms, 0ms; }
+.focus-cursor[data-phase="release"] {
+  --quill-angle: 1.5deg;
+  --quill-time: 180ms;
+  --signature-progress: 0;
+  --signature-time: 150ms;
+}
+.focus-cursor[data-phase="release"] .focus-cursor-signature { transition-delay: 20ms, 0ms, 0ms; }
+.focus-cursor[data-pressed="true"] .focus-cursor-glyph { transform: rotate(3deg) scale(0.97); }
+.focus-cursor[data-pressed="true"] .focus-cursor-signature { opacity: 1; stroke-width: 1; transition-delay: 0ms; }
+/* The same quill draws in slightly while reading, without covering the line below. */
+.focus-cursor[data-mode="text"] {
+  --quill-angle: -8deg;
+  --quill-width: 0.68;
+  --quill-height: 0.74;
+  --quill-time: 220ms;
+}
+.focus-cursor[data-mode="text"] .focus-cursor-feather {
+  fill: color-mix(in srgb, var(--color-ink) 58%, var(--color-ink-2));
+}
+.focus-cursor[data-mode="text"] .focus-cursor-signature { opacity: 0; }
+.focus-cursor[data-mode="text"][data-pressed="true"] {
+  --quill-angle: -12deg;
+  --quill-time: 140ms;
+}
+html.cursor-native-drag .film-stage, html.cursor-native-drag .film-stage * { cursor: grabbing; }
+
+@media (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .focus-cursor { display: none; }
+}

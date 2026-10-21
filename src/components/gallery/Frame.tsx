@@ -1,52 +1,54 @@
 import type { Photo } from '../../content';
 
-export const SPROCKET_BG =
-  'repeating-linear-gradient(90deg, #050608 0px, #050608 12px, transparent 12px, transparent 26px)';
-
-export function Sprockets() {
-  return <div aria-hidden="true" className="h-2.5 w-full" style={{ backgroundImage: SPROCKET_BG }} />;
-}
-
 export default function Frame({
   photo,
   index,
   onSelect,
+  duplicate = false,
 }: {
   photo: Photo;
   index: number;
   onSelect?: () => void;
+  duplicate?: boolean;
 }) {
   const n = String(index + 1).padStart(2, '0');
   return (
-    <figure className="shrink-0">
-      <div className="border border-hairline bg-[#0c0b09] px-3 pb-3 pt-3">
-        <Sprockets />
-        <div className="flex items-baseline justify-between gap-10 py-2 font-mono text-[11px] tracking-[0.15em] text-ink-3">
-          <span>YZJ 400</span>
-          <span>
-            {n}A · {photo.id}
-          </span>
-        </div>
-        <button
-          onClick={onSelect}
-          data-cursor
-          aria-label={`Enlarge photograph ${photo.id}`}
-          className="block cursor-pointer"
-        >
-          <img
-            src={photo.src}
-            alt={photo.caption ?? `Photograph ${photo.id}`}
-            draggable={false}
-            className="h-[42vh] max-h-[430px] min-h-[240px] w-auto max-w-none select-none transition-[filter] duration-500 [@media(hover:hover)]:grayscale [@media(hover:hover)]:hover:grayscale-0"
-          />
-        </button>
-        {photo.caption && (
-          <figcaption className="pt-2 font-mono text-[11px] text-ink-3">{photo.caption}</figcaption>
-        )}
-        <div className="pt-2">
-          <Sprockets />
-        </div>
+    <figure className="film-frame">
+      <div className="film-edge film-edge-top">
+        <span>YZJ 400</span>
+        <span>{photo.id}</span>
       </div>
+      <button
+        onClick={(e) => {
+          // Pointer clicks do not focus buttons in every browser. Make the
+          // originating frame available for the lightbox to restore focus.
+          e.currentTarget.focus({ preventScroll: true });
+          onSelect?.();
+        }}
+        data-cursor
+        tabIndex={duplicate ? -1 : undefined}
+        aria-label={`Enlarge photograph ${photo.id}`}
+        className="film-window group"
+      >
+        <img
+          src={photo.display?.src ?? photo.src}
+          srcSet={photo.display?.srcSet}
+          sizes="(max-width: 767px) and (max-height: 700px) 360px, (max-width: 767px) 645px, (max-height: 800px) 540px, 780px"
+          width={photo.display?.width}
+          height={photo.display?.height}
+          loading={!duplicate && index < 2 ? 'eager' : 'lazy'}
+          decoding="async"
+          alt={photo.caption ?? `Photograph ${photo.id}`}
+          draggable={false}
+          className="film-image w-auto max-w-none select-none transition-[filter] duration-500 [@media(hover:hover)]:grayscale [@media(hover:hover)]:hover:grayscale-0 [@media(hover:hover)]:group-focus-visible:grayscale-0"
+        />
+      </button>
+      <div className="film-edge film-edge-bottom" aria-hidden="true">
+        <span className="film-frame-number">{n}<span className="film-frame-arrow">▴</span></span>
+        <span className="film-edge-code" />
+        <span>{n}A</span>
+      </div>
+      {photo.caption && <figcaption className="film-caption">{photo.caption}</figcaption>}
     </figure>
   );
 }

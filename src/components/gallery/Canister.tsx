@@ -1,38 +1,109 @@
+import { useEffect, useRef, useState } from 'react';
 import type { Roll } from '../../content';
-import { SPROCKET_BG } from './Frame';
+import { useIsCoarsePointer, usePrefersReducedMotion } from '../../hooks';
+import FilmStock from './FilmStock';
+import CanisterModel, { type CanisterModelHandle } from './CanisterModel';
+import { CLOSED_POSE, FULL_TURN, OPEN_DURATION, RETRACT_DURATION, RETURN_DURATION, sampleCanisterMotion, settledPose } from './canisterMotion';
 
 export default function Canister({ roll, onOpen }: { roll: Roll; onOpen: () => void }) {
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const assemblyRef = useRef<HTMLDivElement>(null);
+  const leaderRef = useRef<HTMLDivElement>(null);
+  const pose = useRef({ ...CLOSED_POSE });
+  const model = useRef<CanisterModelHandle>({ turn: 0 });
+  const [hovered, setHovered] = useState(false);
+  const [focused, setFocused] = useState(false);
+  const [modelReady, setModelReady] = useState(false);
+  const coarse = useIsCoarsePointer();
+  const reduced = usePrefersReducedMotion();
+  const open = (!coarse && hovered) || focused;
+
+  useEffect(() => {
+    const button = buttonRef.current;
+    const assembly = assemblyRef.current;
+    const leader = leaderRef.current;
+    if (!button || !assembly || !leader) return;
+    const from = { ...pose.current };
+    const duration = open ? OPEN_DURATION : (from.film > 0 ? RETRACT_DURATION : 0) + RETURN_DURATION;
+    let started: number | undefined;
+    let raf = 0;
+    const paint = () => {
+      const { shift, film, turn } = pose.current;
+      assembly.style.transform = `translate3d(calc((50% - 98px) * ${1 - shift}), 0, 0)`;
+      leader.style.transform = `translate3d(calc(${(film - 1) * 100}% - ${(1 - film) * 2}px), 0, 0)`;
+      if (!model.current.render) {
+        // Keep the non-WebGL fallback readable instead of flipping a flat label backwards.
+        const fallbackTurn = Math.sin(turn) * 0.22;
+        button.style.setProperty('--canister-turn', `rotateY(${fallbackTurn}rad)`);
+        button.style.setProperty('--print-position', `translate3d(${fallbackTurn * 12}px, 0, 0)`);
+        button.style.setProperty('--label-reflection', `translate3d(${-12 - fallbackTurn * 35}px, 0, 0)`);
+      }
+      model.current.turn = turn;
+      model.current.render?.();
+    };
+    if (reduced) {
+      pose.current = settledPose(from, open);
+      paint();
+      return;
+    }
+    const aligned = Math.abs(from.turn / FULL_TURN - Math.round(from.turn / FULL_TURN)) < 1e-7;
+    if (from.shift === (open ? 1 : 0) && from.film === (open ? 1 : 0) && aligned) {
+      paint();
+      return;
+    }
+    const tick = (now: number) => {
+      started ??= now;
+      pose.current = sampleCanisterMotion(from, open, now - started);
+      paint();
+      if (now - started < duration) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [open, reduced]);
+
   return (
     <button
+      ref={buttonRef}
       onClick={onOpen}
+      onPointerEnter={(event) => { if (event.pointerType !== 'touch') setHovered(true); }}
+      onPointerLeave={() => setHovered(false)}
+      onFocus={(event) => setFocused(event.currentTarget.matches(':focus-visible'))}
+      onBlur={() => setFocused(false)}
       data-cursor
       aria-label={`Open roll ${roll.title}`}
-      className="group block text-left"
+      className={`film-canister group block w-full text-left ${modelReady ? 'model-ready' : ''}`}
     >
-      <div className="flex items-center">
-        <div className="relative z-10 h-32 w-60 rounded-lg border border-hairline bg-[#11151b] transition-transform duration-300 group-hover:-rotate-1">
-          <div className="absolute inset-y-0 left-0 w-3 rounded-l-lg border-r border-hairline bg-[#1a212a]" />
-          <div className="absolute inset-y-3 left-6 right-4 border-y border-accent/25 bg-[#0c0f13] px-4 py-2.5">
-            <p className="font-mono text-[11px] tracking-[0.2em] text-accent">YZJ 400</p>
-            <p className="mt-1 font-serif text-2xl italic leading-tight text-ink">{roll.title}</p>
-            <p className="mt-1.5 font-mono text-[11px] tracking-[0.12em] text-ink-3">
-              {roll.subtitle && `${roll.subtitle} · `}
-              {String(roll.photos.length).padStart(2, '0')} EXP
-              {roll.year && ` · ${roll.year}`}
-            </p>
+      <div className="film-canister-stage">
+        <div ref={assemblyRef} className="film-canister-assembly">
+          <div className="film-leader-sleeve">
+            <div ref={leaderRef} className="film-leader">
+              <FilmStock />
+              <span className="film-leader-mark" aria-hidden="true">400 →</span>
+            </div>
           </div>
-        </div>
-        <div className="relative -ml-1 h-14 w-20 transition-transform duration-500 group-hover:translate-x-3">
-          <div
-            className="absolute inset-0 border border-hairline bg-[#0c0b09]"
-            style={{ clipPath: 'polygon(0 0, 100% 0, 100% 60%, 55% 60%, 45% 100%, 0 100%)' }}
-          >
-            <div className="mt-1.5 h-2 w-full" style={{ backgroundImage: SPROCKET_BG }} />
-            <div className="absolute bottom-1.5 left-0 h-2 w-2/5" style={{ backgroundImage: SPROCKET_BG }} />
+          <CanisterModel roll={roll} motion={model} onReady={setModelReady} />
+          <div className="film-canister-body">
+            <span className="film-mouth" aria-hidden="true" />
+            <span className="film-cap film-cap-top" aria-hidden="true" />
+            <span className="film-spindle" aria-hidden="true" />
+            <div className="film-canister-label">
+              <div className="film-canister-print">
+                <p className="film-canister-brand">YZJ</p>
+                <p className="film-canister-title">{roll.title}</p>
+                <p className="film-canister-stock">400 <span className="film-barcode" aria-hidden="true" /></p>
+                <p className="film-canister-meta">
+                  {roll.subtitle && `${roll.subtitle} · `}
+                  {String(roll.photos.length).padStart(2, '0')} EXP
+                  {roll.year && ` · ${roll.year}`}
+                </p>
+              </div>
+            </div>
+            <span className="film-dx-code" aria-hidden="true" />
+            <span className="film-cap film-cap-bottom" aria-hidden="true" />
           </div>
         </div>
       </div>
-      <p className="mt-4 font-mono text-[11px] tracking-[0.2em] text-ink-3 transition-colors group-hover:text-accent">
+      <p className="mt-2 text-center font-mono text-xs tracking-[0.2em] text-ink-2 transition-colors group-hover:text-accent group-focus-visible:text-accent">
         UNSPOOL →
       </p>
     </button>

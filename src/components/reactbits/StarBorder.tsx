@@ -9,6 +9,8 @@ export default function StarBorder({
   ariaLabel,
   onMouseEnter,
   onMouseLeave,
+  onFocus,
+  onBlur,
   onClick,
 }: {
   children: ReactNode;
@@ -17,6 +19,8 @@ export default function StarBorder({
   ariaLabel?: string;
   onMouseEnter?: () => void;
   onMouseLeave?: () => void;
+  onFocus?: () => void;
+  onBlur?: () => void;
   onClick?: (e: MouseEvent<HTMLAnchorElement>) => void;
 }) {
   const reduced = usePrefersReducedMotion();
@@ -27,6 +31,8 @@ export default function StarBorder({
       aria-label={ariaLabel}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
+      onFocus={onFocus}
+      onBlur={onBlur}
       onClick={onClick}
       className={`relative inline-block overflow-hidden rounded-sm p-px ${className}`}
     >
@@ -45,7 +51,7 @@ export default function StarBorder({
         </>
       )}
       <span
-        className={`relative z-10 block border bg-base px-6 py-3 font-mono text-xs uppercase tracking-[0.2em] text-ink transition-colors hover:text-accent ${
+        className={`relative z-10 block min-h-11 border bg-base px-3 py-3 font-mono text-xs uppercase tracking-[0.2em] text-ink transition-colors hover:text-accent md:px-6 ${
           reduced ? 'border-accent/50' : 'border-hairline'
         }`}
       >

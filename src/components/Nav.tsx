@@ -17,16 +17,17 @@ export default function Nav() {
   return (
     <header className="fixed inset-x-0 top-0 z-40 border-b border-hairline bg-base/80 backdrop-blur-md">
       <nav className="mx-auto flex h-14 max-w-5xl items-center justify-between px-6">
-        <a href="/" data-cursor className="font-mono text-sm tracking-widest text-accent">
+        <a href="/" data-cursor className="inline-flex min-h-11 min-w-11 items-center font-mono text-sm tracking-widest text-accent">
           YZ_J
         </a>
-        <div className="hidden gap-7 md:flex">
+        <div className="hidden gap-5 md:flex">
           {NAV_LINKS.map((l) => (
             <a
               key={l.href}
               href={l.href}
               data-cursor
-              className={`font-mono text-[11px] tracking-[0.18em] transition-colors ${
+              aria-current={isActive(l.href, path) ? 'page' : undefined}
+              className={`inline-flex min-h-11 items-center px-1 font-mono text-xs tracking-[0.14em] transition-colors ${
                 isActive(l.href, path) ? 'text-accent' : 'text-ink-2 hover:text-ink'
               }`}
             >
@@ -37,20 +38,22 @@ export default function Nav() {
         <button
           onClick={() => setOpen(!open)}
           aria-expanded={open}
+          aria-controls="mobile-nav"
           aria-label="Toggle menu"
-          className="font-mono text-[11px] tracking-[0.18em] text-ink-2 md:hidden"
+          className="min-h-11 min-w-11 px-2 font-mono text-xs tracking-[0.14em] text-ink-2 md:hidden"
         >
           {open ? 'CLOSE' : 'MENU'}
         </button>
       </nav>
       {open && (
-        <div className="border-t border-hairline bg-base/95 backdrop-blur-md md:hidden">
+        <div id="mobile-nav" className="border-t border-hairline bg-base/95 backdrop-blur-md md:hidden">
           {NAV_LINKS.map((l) => (
             <a
               key={l.href}
               href={l.href}
               onClick={() => setOpen(false)}
-              className="block px-6 py-4 font-mono text-xs tracking-[0.2em] text-ink-2"
+              aria-current={isActive(l.href, path) ? 'page' : undefined}
+              className={`block min-h-11 px-6 py-4 font-mono text-xs tracking-[0.2em] ${isActive(l.href, path) ? 'text-accent' : 'text-ink-2'}`}
             >
               {l.label}
             </a>

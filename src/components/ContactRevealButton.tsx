@@ -113,12 +113,15 @@ export default function ContactRevealButton() {
   return (
     <StarBorder
       href={`mailto:${contact.email}`}
+      className="w-full min-w-0 md:w-auto"
       ariaLabel={`Copy email ${contact.email}`}
       onMouseEnter={onEnter}
       onMouseLeave={onLeave}
+      onFocus={onEnter}
+      onBlur={onLeave}
       onClick={onClick}
     >
-      <span className="relative inline-block whitespace-nowrap normal-case">
+      <span className="relative block break-all text-center tracking-[0.025em] normal-case md:whitespace-nowrap md:tracking-[0.2em]">
         <span className="invisible">{contact.email}</span>
         <span aria-hidden="true" className="absolute inset-0 text-center">
           {display}

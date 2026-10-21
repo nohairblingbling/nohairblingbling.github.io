@@ -14,7 +14,7 @@ export default function PublicationsPage() {
           </Reveal>
         ))}
       </div>
-      <p className="mt-6 font-mono text-[11px] text-ink-3">* Equal contribution</p>
+      <p className="mt-6 font-mono text-xs text-ink-2">* Equal contribution</p>
     </main>
   );
 }

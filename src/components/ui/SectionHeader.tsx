@@ -12,7 +12,7 @@ export default function SectionHeader({
   titleAccent?: string;
 }) {
   return (
-    <div className="mb-14">
+    <div className="mb-10 md:mb-14">
       <Reveal variant="fade">
         <p className="font-mono text-[11px] tracking-[0.3em] text-accent">
           FR.{index} — {label}

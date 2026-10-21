@@ -39,6 +39,6 @@ describe('content integrity', () => {
   it('contact and socials are set', () => {
     expect(contact.email).toBe('yuzhuo@hdi.ait.kyushu-u.ac.jp');
     expect(socials[0].url).toMatch(/^https:\/\//);
-    expect(about.interests.length).toBeGreaterThanOrEqual(5);
+    expect(about.interests).toHaveLength(3);
   });
 });

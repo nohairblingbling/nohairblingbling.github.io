@@ -1,8 +1,10 @@
 import imgReading from './assets/new_research.jpg';
 import imgLumos from './assets/lumos.jpg';
-import imgFodap from './assets/fodap-framework.png';
+import imgFodap from './assets/optimized/fodap-framework-960.webp';
+import imgFodapSmall from './assets/optimized/fodap-framework-640.webp';
+import imgFodapFull from './assets/optimized/fodap-framework.webp';
 import imgPedestrian from './assets/yolov5-pedestrian-framework.jpg';
-import imgPortrait from './assets/portrait.jpg';
+import { portraitDisplay, photoDisplays } from './imageAssets';
 import xj1 from './assets/gallery/XJ1.jpg';
 import xj2 from './assets/gallery/XJ2.jpg';
 import xj3 from './assets/gallery/XJ3.jpg';
@@ -17,10 +19,11 @@ export type Publication = {
   status?: string;
   link?: { label: string; url: string };
   image?: string;
+  imageSrcSet?: string;
   featured?: boolean;
 };
 export type TimelineEntry = { org: string; role: string; period: string };
-export type Photo = { id: string; src: string; caption?: string };
+export type Photo = { id: string; src: string; caption?: string; display?: { src: string; srcSet: string; width: number; height: number } };
 export type Roll = { id: string; title: string; subtitle?: string; year?: string; photos: Photo[] };
 
 export const meta = {
@@ -34,20 +37,20 @@ export const hero = {
   // 转博 / 换头衔只改这一行：
   position: 'Ph.D. Student · Kyushu University',
   // 用 *星号* 包住的词会以衬线斜体渲染：
-  bio: 'My research lies at the intersection of agentic AI, large language models, and human-computer interaction. I focus on *agent-to-agent interaction*, *embodied cognition*, and *AI-driven learning systems*.',
+  bio: "I'm a first-year Ph.D. student at Kyushu University,",
+  research: 'My research interests include large language models, AI agents, and human-computer interaction. I am particularly interested in how *AI agents can support human teamwork*. This includes understanding team members’ different perspectives, tracking how shared understanding evolves, and deciding when to offer help, while allowing people to guide, correct, or decline that assistance.',
+  advisor: { name: 'Shin’ichi Konomi', url: 'http://konomi.org/' },
   cv: '/cv.pdf',
   status: 'OPEN TO COLLABORATION',
 };
 
 export const about = {
-  portrait: imgPortrait,
+  portrait: portraitDisplay.src,
+  portraitDisplay,
   interests: [
-    'Agentic AI',
     'Large Language Models',
+    'AI Agents',
     'Human-Computer Interaction',
-    'Agent-to-Agent Interaction',
-    'Embodied Cognition',
-    'AI-Driven Learning Systems',
   ],
 };
 
@@ -100,6 +103,7 @@ export const publications: Publication[] = [
     status: 'Accepted',
     featured: true,
     image: imgFodap,
+    imageSrcSet: `${imgFodapSmall} 640w, ${imgFodap} 960w, ${imgFodapFull} 1556w`,
     link: { label: 'DOI', url: 'https://doi.org/10.1109/BIBM62325.2024.10822532' },
   },
   {
@@ -129,11 +133,11 @@ export const rolls: Roll[] = [
     title: 'North Xinjiang',
     year: '2025',
     photos: [
-      { id: 'XJ1', src: xj1 },
-      { id: 'XJ2', src: xj2 },
-      { id: 'XJ3', src: xj3 },
-      { id: 'XJ4', src: xj4 },
-      { id: 'XJ5', src: xj5 },
+      { id: 'XJ1', src: xj1, display: photoDisplays.XJ1 },
+      { id: 'XJ2', src: xj2, display: photoDisplays.XJ2 },
+      { id: 'XJ3', src: xj3, display: photoDisplays.XJ3 },
+      { id: 'XJ4', src: xj4, display: photoDisplays.XJ4 },
+      { id: 'XJ5', src: xj5, display: photoDisplays.XJ5 },
     ],
   },
 ];

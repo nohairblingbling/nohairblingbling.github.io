@@ -34,12 +34,12 @@ describe('GalleryPage', () => {
     fireEvent.click(screen.getByRole('button', { name: `Open roll ${roll.title}` }));
     expect(screen.getAllByRole('figure')).toHaveLength(roll.photos.length);
     expect(screen.getAllByText('YZJ 400')).toHaveLength(roll.photos.length);
-    fireEvent.click(
-      screen.getByRole('button', { name: `Enlarge photograph ${roll.photos[0].id}` })
-    );
+    const trigger = screen.getByRole('button', { name: `Enlarge photograph ${roll.photos[0].id}` });
+    fireEvent.click(trigger);
     expect(screen.getByRole('dialog')).toBeInTheDocument();
     expect(screen.getByText(new RegExp(`01 / 0${roll.photos.length}`))).toBeInTheDocument();
     fireEvent.keyDown(document, { key: 'Escape' });
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+    expect(trigger).toHaveFocus();
   });
 });
