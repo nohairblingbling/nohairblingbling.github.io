@@ -36,6 +36,23 @@ describe('content integrity', () => {
     }
     expect(rolls[0].photos.length).toBeGreaterThanOrEqual(5);
   });
+  it('keeps every gallery photograph unique with English labels and stable aspect ratios', () => {
+    const photos = rolls.flatMap(roll => roll.photos);
+    expect(rolls.filter(roll => roll.category === 'portraits')).toHaveLength(2);
+    expect(rolls.filter(roll => roll.category === 'landscapes')).toHaveLength(2);
+    expect(photos).toHaveLength(33);
+    expect(new Set(photos.map(photo => photo.id)).size).toBe(photos.length);
+    for (const photo of photos) {
+      expect(photo.display!.width).toBeGreaterThan(0);
+      expect(photo.display!.height).toBeGreaterThan(0);
+      if (!photo.id.startsWith('XJ')) {
+        expect(photo.src).toMatch(/2560[^/]*\.webp/);
+        expect(photo.display!.srcSet).not.toContain('2560');
+        expect(photo.alt).toBeTruthy();
+        expect(photo.alt).not.toMatch(/[\u4e00-\u9fff]/);
+      }
+    }
+  });
   it('contact and socials are set', () => {
     expect(contact.email).toBe('yuzhuo@hdi.ait.kyushu-u.ac.jp');
     expect(socials[0].url).toMatch(/^https:\/\//);

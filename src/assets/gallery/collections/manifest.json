@@ -1,0 +1,596 @@
+{
+  "northXinjiangPortraits": [
+    {
+      "id": "ZYD07935",
+      "alt": "Portrait overlooking a green mountain valley in North Xinjiang",
+      "variants": [
+        {
+          "file": "northxinjiangportraits-zyd07935-720.webp",
+          "width": 480,
+          "height": 720
+        },
+        {
+          "file": "northxinjiangportraits-zyd07935-1440.webp",
+          "width": 960,
+          "height": 1440
+        },
+        {
+          "file": "northxinjiangportraits-zyd07935-2560.webp",
+          "width": 1707,
+          "height": 2560
+        }
+      ]
+    },
+    {
+      "id": "ZYD07967",
+      "alt": "Portrait beside a motorcycle above a mountain valley",
+      "variants": [
+        {
+          "file": "northxinjiangportraits-zyd07967-720.webp",
+          "width": 480,
+          "height": 720
+        },
+        {
+          "file": "northxinjiangportraits-zyd07967-1440.webp",
+          "width": 960,
+          "height": 1440
+        },
+        {
+          "file": "northxinjiangportraits-zyd07967-2560.webp",
+          "width": 1707,
+          "height": 2560
+        }
+      ]
+    },
+    {
+      "id": "ZYD08128",
+      "alt": "Portrait beneath a tree in a sunlit meadow",
+      "variants": [
+        {
+          "file": "northxinjiangportraits-zyd08128-720.webp",
+          "width": 480,
+          "height": 720
+        },
+        {
+          "file": "northxinjiangportraits-zyd08128-1440.webp",
+          "width": 960,
+          "height": 1440
+        },
+        {
+          "file": "northxinjiangportraits-zyd08128-2560.webp",
+          "width": 1707,
+          "height": 2560
+        }
+      ]
+    },
+    {
+      "id": "ZYD08153",
+      "alt": "Portrait beneath branches beside a mountain lake",
+      "variants": [
+        {
+          "file": "northxinjiangportraits-zyd08153-720.webp",
+          "width": 480,
+          "height": 720
+        },
+        {
+          "file": "northxinjiangportraits-zyd08153-1440.webp",
+          "width": 960,
+          "height": 1440
+        },
+        {
+          "file": "northxinjiangportraits-zyd08153-2560.webp",
+          "width": 1707,
+          "height": 2560
+        }
+      ]
+    },
+    {
+      "id": "ZYD08173",
+      "alt": "Portrait at a forest-lined lake",
+      "variants": [
+        {
+          "file": "northxinjiangportraits-zyd08173-720.webp",
+          "width": 480,
+          "height": 720
+        },
+        {
+          "file": "northxinjiangportraits-zyd08173-1440.webp",
+          "width": 960,
+          "height": 1440
+        },
+        {
+          "file": "northxinjiangportraits-zyd08173-2560.webp",
+          "width": 1707,
+          "height": 2560
+        }
+      ]
+    },
+    {
+      "id": "ZYD08194-B",
+      "alt": "Portrait looking across a lake toward the forest",
+      "variants": [
+        {
+          "file": "northxinjiangportraits-zyd08194-2-720.webp",
+          "width": 480,
+          "height": 720
+        },
+        {
+          "file": "northxinjiangportraits-zyd08194-2-1440.webp",
+          "width": 960,
+          "height": 1440
+        },
+        {
+          "file": "northxinjiangportraits-zyd08194-2-2560.webp",
+          "width": 1707,
+          "height": 2560
+        }
+      ]
+    },
+    {
+      "id": "ZYD08293",
+      "alt": "Lakeside portrait with wooded hills in the background",
+      "variants": [
+        {
+          "file": "northxinjiangportraits-zyd08293-720.webp",
+          "width": 720,
+          "height": 480
+        },
+        {
+          "file": "northxinjiangportraits-zyd08293-1440.webp",
+          "width": 1440,
+          "height": 960
+        },
+        {
+          "file": "northxinjiangportraits-zyd08293-2560.webp",
+          "width": 2560,
+          "height": 1707
+        }
+      ]
+    },
+    {
+      "id": "ZYD08342",
+      "alt": "Portrait among trees beside a forest lake",
+      "variants": [
+        {
+          "file": "northxinjiangportraits-zyd08342-720.webp",
+          "width": 405,
+          "height": 720
+        },
+        {
+          "file": "northxinjiangportraits-zyd08342-1440.webp",
+          "width": 810,
+          "height": 1440
+        },
+        {
+          "file": "northxinjiangportraits-zyd08342-2560.webp",
+          "width": 1440,
+          "height": 2560
+        }
+      ]
+    },
+    {
+      "id": "ZYD08344",
+      "alt": "Portrait in dappled light beside a tree",
+      "variants": [
+        {
+          "file": "northxinjiangportraits-zyd08344-720.webp",
+          "width": 405,
+          "height": 720
+        },
+        {
+          "file": "northxinjiangportraits-zyd08344-1440.webp",
+          "width": 810,
+          "height": 1440
+        },
+        {
+          "file": "northxinjiangportraits-zyd08344-2560.webp",
+          "width": 1440,
+          "height": 2560
+        }
+      ]
+    },
+    {
+      "id": "ZYD08413",
+      "alt": "Portrait under leafy branches beside the water",
+      "variants": [
+        {
+          "file": "northxinjiangportraits-zyd08413-720.webp",
+          "width": 720,
+          "height": 480
+        },
+        {
+          "file": "northxinjiangportraits-zyd08413-1440.webp",
+          "width": 1440,
+          "height": 960
+        },
+        {
+          "file": "northxinjiangportraits-zyd08413-2560.webp",
+          "width": 2560,
+          "height": 1707
+        }
+      ]
+    }
+  ],
+  "northwestPortraits": [
+    {
+      "id": "ZYD07195",
+      "alt": "Portrait at a salt lake with bands of orange and blue water",
+      "variants": [
+        {
+          "file": "northwestportraits-zyd07195-720.webp",
+          "width": 480,
+          "height": 720
+        },
+        {
+          "file": "northwestportraits-zyd07195-1440.webp",
+          "width": 960,
+          "height": 1440
+        },
+        {
+          "file": "northwestportraits-zyd07195-2560.webp",
+          "width": 1707,
+          "height": 2560
+        }
+      ]
+    },
+    {
+      "id": "ZYD07197",
+      "alt": "Portrait in a black dress beside a colorful salt lake",
+      "variants": [
+        {
+          "file": "northwestportraits-zyd07197-720.webp",
+          "width": 480,
+          "height": 720
+        },
+        {
+          "file": "northwestportraits-zyd07197-1440.webp",
+          "width": 960,
+          "height": 1440
+        },
+        {
+          "file": "northwestportraits-zyd07197-2560.webp",
+          "width": 1707,
+          "height": 2560
+        }
+      ]
+    },
+    {
+      "id": "ZYD07206",
+      "alt": "Side profile at the edge of a colorful salt lake",
+      "variants": [
+        {
+          "file": "northwestportraits-zyd07206-720.webp",
+          "width": 480,
+          "height": 720
+        },
+        {
+          "file": "northwestportraits-zyd07206-1440.webp",
+          "width": 960,
+          "height": 1440
+        },
+        {
+          "file": "northwestportraits-zyd07206-2560.webp",
+          "width": 1706,
+          "height": 2560
+        }
+      ]
+    },
+    {
+      "id": "ZYD07293",
+      "alt": "Environmental portrait on a salt lake shore beneath distant mountains",
+      "variants": [
+        {
+          "file": "northwestportraits-zyd07293-720.webp",
+          "width": 720,
+          "height": 480
+        },
+        {
+          "file": "northwestportraits-zyd07293-1440.webp",
+          "width": 1440,
+          "height": 960
+        },
+        {
+          "file": "northwestportraits-zyd07293-2560.webp",
+          "width": 2560,
+          "height": 1707
+        }
+      ]
+    },
+    {
+      "id": "ZYD07500",
+      "alt": "Portrait in black among pale desert dunes",
+      "variants": [
+        {
+          "file": "northwestportraits-zyd07500-720.webp",
+          "width": 480,
+          "height": 720
+        },
+        {
+          "file": "northwestportraits-zyd07500-1440.webp",
+          "width": 960,
+          "height": 1440
+        },
+        {
+          "file": "northwestportraits-zyd07500-2560.webp",
+          "width": 1707,
+          "height": 2560
+        }
+      ]
+    },
+    {
+      "id": "ZYD07532",
+      "alt": "Portrait against layered desert dunes",
+      "variants": [
+        {
+          "file": "northwestportraits-zyd07532-720.webp",
+          "width": 480,
+          "height": 720
+        },
+        {
+          "file": "northwestportraits-zyd07532-1440.webp",
+          "width": 960,
+          "height": 1440
+        },
+        {
+          "file": "northwestportraits-zyd07532-2560.webp",
+          "width": 1707,
+          "height": 2560
+        }
+      ]
+    },
+    {
+      "id": "ZYD07545",
+      "alt": "Portrait with pale dunes and dark mountains in the background",
+      "variants": [
+        {
+          "file": "northwestportraits-zyd07545-720.webp",
+          "width": 480,
+          "height": 720
+        },
+        {
+          "file": "northwestportraits-zyd07545-1440.webp",
+          "width": 960,
+          "height": 1440
+        },
+        {
+          "file": "northwestportraits-zyd07545-2560.webp",
+          "width": 1707,
+          "height": 2560
+        }
+      ]
+    },
+    {
+      "id": "DJI_20250805180531_0238_D",
+      "alt": "Aerial view of a lone figure amid sweeping desert dunes",
+      "variants": [
+        {
+          "file": "northwestportraits-dji-20250805180531-0238-d-720.webp",
+          "width": 720,
+          "height": 405
+        },
+        {
+          "file": "northwestportraits-dji-20250805180531-0238-d-1440.webp",
+          "width": 1440,
+          "height": 810
+        },
+        {
+          "file": "northwestportraits-dji-20250805180531-0238-d-2560.webp",
+          "width": 2560,
+          "height": 1440
+        }
+      ]
+    },
+    {
+      "id": "ZYD07594-B",
+      "alt": "Portrait in white beside an earthen building",
+      "variants": [
+        {
+          "file": "northwestportraits-zyd07594-2-720.webp",
+          "width": 480,
+          "height": 720
+        },
+        {
+          "file": "northwestportraits-zyd07594-2-1440.webp",
+          "width": 960,
+          "height": 1440
+        },
+        {
+          "file": "northwestportraits-zyd07594-2-2560.webp",
+          "width": 1707,
+          "height": 2560
+        }
+      ]
+    },
+    {
+      "id": "ZYD07727-B",
+      "alt": "Portrait in warm evening light on a sand dune",
+      "variants": [
+        {
+          "file": "northwestportraits-zyd07727-2-720.webp",
+          "width": 427,
+          "height": 720
+        },
+        {
+          "file": "northwestportraits-zyd07727-2-1440.webp",
+          "width": 854,
+          "height": 1440
+        },
+        {
+          "file": "northwestportraits-zyd07727-2-2560.webp",
+          "width": 1518,
+          "height": 2560
+        }
+      ]
+    },
+    {
+      "id": "ZYD07732",
+      "alt": "Portrait among golden dunes with an arm raised",
+      "variants": [
+        {
+          "file": "northwestportraits-zyd07732-720.webp",
+          "width": 720,
+          "height": 405
+        },
+        {
+          "file": "northwestportraits-zyd07732-1440.webp",
+          "width": 1440,
+          "height": 811
+        },
+        {
+          "file": "northwestportraits-zyd07732-2560.webp",
+          "width": 2560,
+          "height": 1442
+        }
+      ]
+    },
+    {
+      "id": "ZYD07739-B",
+      "alt": "Side profile against soft golden sand dunes",
+      "variants": [
+        {
+          "file": "northwestportraits-zyd07739-2-720.webp",
+          "width": 371,
+          "height": 720
+        },
+        {
+          "file": "northwestportraits-zyd07739-2-1440.webp",
+          "width": 742,
+          "height": 1440
+        },
+        {
+          "file": "northwestportraits-zyd07739-2-2560.webp",
+          "width": 1320,
+          "height": 2560
+        }
+      ]
+    },
+    {
+      "id": "ZYD07756",
+      "alt": "Portrait in a flowing dress in the desert",
+      "variants": [
+        {
+          "file": "northwestportraits-zyd07756-720.webp",
+          "width": 480,
+          "height": 720
+        },
+        {
+          "file": "northwestportraits-zyd07756-1440.webp",
+          "width": 960,
+          "height": 1440
+        },
+        {
+          "file": "northwestportraits-zyd07756-2560.webp",
+          "width": 1707,
+          "height": 2560
+        }
+      ]
+    }
+  ],
+  "yunnan": [
+    {
+      "id": "IMG_0014-1",
+      "alt": "Pink blossoms reflected in water in Yunnan",
+      "variants": [
+        {
+          "file": "yunnan-img-0014-1-720.webp",
+          "width": 514,
+          "height": 720
+        },
+        {
+          "file": "yunnan-img-0014-1-1440.webp",
+          "width": 1029,
+          "height": 1440
+        },
+        {
+          "file": "yunnan-img-0014-1-2560.webp",
+          "width": 1829,
+          "height": 2560
+        }
+      ]
+    },
+    {
+      "id": "ZYD04784",
+      "alt": "A lakeshore framed by leafy trees in Yunnan",
+      "variants": [
+        {
+          "file": "yunnan-zyd04784-720.webp",
+          "width": 720,
+          "height": 480
+        },
+        {
+          "file": "yunnan-zyd04784-1440.webp",
+          "width": 1440,
+          "height": 960
+        },
+        {
+          "file": "yunnan-zyd04784-2560.webp",
+          "width": 2560,
+          "height": 1707
+        }
+      ]
+    },
+    {
+      "id": "ZYD04811",
+      "alt": "Bare branches rising from a blue lake",
+      "variants": [
+        {
+          "file": "yunnan-zyd04811-720.webp",
+          "width": 720,
+          "height": 480
+        },
+        {
+          "file": "yunnan-zyd04811-1440.webp",
+          "width": 1440,
+          "height": 960
+        },
+        {
+          "file": "yunnan-zyd04811-2560.webp",
+          "width": 2560,
+          "height": 1707
+        }
+      ]
+    },
+    {
+      "id": "ZYD04939-2",
+      "alt": "A quiet interior framing a sunlit doorway",
+      "variants": [
+        {
+          "file": "yunnan-zyd04939-2-720.webp",
+          "width": 480,
+          "height": 720
+        },
+        {
+          "file": "yunnan-zyd04939-2-1440.webp",
+          "width": 960,
+          "height": 1440
+        },
+        {
+          "file": "yunnan-zyd04939-2-2560.webp",
+          "width": 1706,
+          "height": 2560
+        }
+      ]
+    },
+    {
+      "id": "ZYD05137",
+      "alt": "Snow-covered mountains reflected in still water",
+      "variants": [
+        {
+          "file": "yunnan-zyd05137-720.webp",
+          "width": 480,
+          "height": 720
+        },
+        {
+          "file": "yunnan-zyd05137-1440.webp",
+          "width": 960,
+          "height": 1440
+        },
+        {
+          "file": "yunnan-zyd05137-2560.webp",
+          "width": 1707,
+          "height": 2560
+        }
+      ]
+    }
+  ]
+}

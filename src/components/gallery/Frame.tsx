@@ -12,6 +12,15 @@ export default function Frame({
   duplicate?: boolean;
 }) {
   const n = String(index + 1).padStart(2, '0');
+  // The complete image fits inside the square; portraits use less horizontal space.
+  const widthScale = photo.display ? Math.min(1, photo.display.width / photo.display.height) : 1;
+  const sourceSize = (height: string) => `calc(min(${height}, 100vw - 64px) * ${widthScale.toFixed(3)})`;
+  const sizes = [
+    `(max-width: 767px) and (max-height: 700px) ${sourceSize('clamp(200px, 34svh, 240px)')}`,
+    `(max-width: 767px) ${sourceSize('clamp(240px, 42svh, 430px)')}`,
+    `(max-height: 800px) ${sourceSize('clamp(240px, 41svh, 360px)')}`,
+    sourceSize('clamp(280px, 46svh, 520px)'),
+  ].join(', ');
   return (
     <figure className="film-frame">
       <div className="film-edge film-edge-top">
@@ -33,14 +42,14 @@ export default function Frame({
         <img
           src={photo.display?.src ?? photo.src}
           srcSet={photo.display?.srcSet}
-          sizes="(max-width: 767px) and (max-height: 700px) 360px, (max-width: 767px) 645px, (max-height: 800px) 540px, 780px"
+          sizes={sizes}
           width={photo.display?.width}
           height={photo.display?.height}
           loading={!duplicate && index < 2 ? 'eager' : 'lazy'}
           decoding="async"
-          alt={photo.caption ?? `Photograph ${photo.id}`}
+          alt={photo.alt ?? photo.caption ?? `Photograph ${photo.id}`}
           draggable={false}
-          className="film-image w-auto max-w-none select-none transition-[filter] duration-500 [@media(hover:hover)]:grayscale [@media(hover:hover)]:hover:grayscale-0 [@media(hover:hover)]:group-focus-visible:grayscale-0"
+          className="film-image max-w-none select-none transition-[filter] duration-500 [@media(hover:hover)]:grayscale [@media(hover:hover)]:hover:grayscale-0 [@media(hover:hover)]:group-focus-visible:grayscale-0"
         />
       </button>
       <div className="film-edge film-edge-bottom" aria-hidden="true">

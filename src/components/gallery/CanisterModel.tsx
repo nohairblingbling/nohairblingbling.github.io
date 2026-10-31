@@ -67,6 +67,7 @@ function labelTexture(roll: Roll) {
   ctx.fillStyle = '#65524b';
   ctx.font = '500 29px "JetBrains Mono Variable", monospace';
   ctx.fillText('Y Z J', 350, 57);
+  ctx.fillText(roll.category === 'portraits' ? 'P' : 'L', 645, 57);
   ctx.fillRect(350, 77, 324, 3);
   ctx.fillRect(350, 84, 324, 1);
   ctx.fillStyle = '#252727';

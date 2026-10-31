@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import type { Roll } from '../../content';
+import { galleryCategories, type Roll } from '../../content';
 import { useIsCoarsePointer, usePrefersReducedMotion } from '../../hooks';
 import FilmStock from './FilmStock';
 import CanisterModel, { type CanisterModelHandle } from './CanisterModel';
@@ -17,6 +17,7 @@ export default function Canister({ roll, onOpen }: { roll: Roll; onOpen: () => v
   const coarse = useIsCoarsePointer();
   const reduced = usePrefersReducedMotion();
   const open = (!coarse && hovered) || focused;
+  const category = galleryCategories.find((item) => item.id === roll.category)!;
 
   useEffect(() => {
     const button = buttonRef.current;
@@ -70,42 +71,48 @@ export default function Canister({ roll, onOpen }: { roll: Roll; onOpen: () => v
       onFocus={(event) => setFocused(event.currentTarget.matches(':focus-visible'))}
       onBlur={() => setFocused(false)}
       data-cursor
-      aria-label={`Open roll ${roll.title}`}
+      data-roll-id={roll.id}
+      aria-label={`Open ${category.label.toLowerCase()} roll ${roll.title}`}
       className={`film-canister group block w-full text-left ${modelReady ? 'model-ready' : ''}`}
     >
-      <div className="film-canister-stage">
-        <div ref={assemblyRef} className="film-canister-assembly">
-          <div className="film-leader-sleeve">
-            <div ref={leaderRef} className="film-leader">
-              <FilmStock />
-              <span className="film-leader-mark" aria-hidden="true">400 →</span>
-            </div>
-          </div>
-          <CanisterModel roll={roll} motion={model} onReady={setModelReady} />
-          <div className="film-canister-body">
-            <span className="film-mouth" aria-hidden="true" />
-            <span className="film-cap film-cap-top" aria-hidden="true" />
-            <span className="film-spindle" aria-hidden="true" />
-            <div className="film-canister-label">
-              <div className="film-canister-print">
-                <p className="film-canister-brand">YZJ</p>
-                <p className="film-canister-title">{roll.title}</p>
-                <p className="film-canister-stock">400 <span className="film-barcode" aria-hidden="true" /></p>
-                <p className="film-canister-meta">
-                  {roll.subtitle && `${roll.subtitle} · `}
-                  {String(roll.photos.length).padStart(2, '0')} EXP
-                  {roll.year && ` · ${roll.year}`}
-                </p>
+      <div className="gallery-roll-object" aria-hidden="true">
+        <div className="film-canister-stage">
+          <div ref={assemblyRef} className="film-canister-assembly">
+            <div className="film-leader-sleeve">
+              <div ref={leaderRef} className="film-leader">
+                <FilmStock />
+                <span className="film-leader-mark" aria-hidden="true">400 →</span>
               </div>
             </div>
-            <span className="film-dx-code" aria-hidden="true" />
-            <span className="film-cap film-cap-bottom" aria-hidden="true" />
+            <CanisterModel roll={roll} motion={model} onReady={setModelReady} />
+            <div className="film-canister-body">
+              <span className="film-mouth" aria-hidden="true" />
+              <span className="film-cap film-cap-top" aria-hidden="true" />
+              <span className="film-spindle" aria-hidden="true" />
+              <div className="film-canister-label">
+                <div className="film-canister-print">
+                  <p className="film-canister-brand">YZJ · {category.mark}</p>
+                  <p className="film-canister-title">{roll.title}</p>
+                  <p className="film-canister-stock">400 <span className="film-barcode" aria-hidden="true" /></p>
+                  <p className="film-canister-meta">
+                    {roll.subtitle && `${roll.subtitle} · `}
+                    {String(roll.photos.length).padStart(2, '0')} EXP
+                    {roll.year && ` · ${roll.year}`}
+                  </p>
+                </div>
+              </div>
+              <span className="film-dx-code" aria-hidden="true" />
+              <span className="film-cap film-cap-bottom" aria-hidden="true" />
+            </div>
           </div>
         </div>
       </div>
-      <p className="mt-2 text-center font-mono text-xs tracking-[0.2em] text-ink-2 transition-colors group-hover:text-accent group-focus-visible:text-accent">
-        UNSPOOL →
-      </p>
+      <span className="gallery-roll-info">
+        <span className="gallery-roll-category">{category.label}</span>
+        <span className="gallery-roll-title">{roll.title}</span>
+        <span className="gallery-roll-meta">{roll.date ?? roll.year} · {String(roll.photos.length).padStart(2, '0')} frames</span>
+        <span className="gallery-roll-open">Unspool roll <span aria-hidden="true">↗</span></span>
+      </span>
     </button>
   );
 }

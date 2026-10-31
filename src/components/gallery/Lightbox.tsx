@@ -134,19 +134,19 @@ export default function Lightbox({
           sizes="(max-width: 767px) calc(100vw - 32px), calc(100vw - 48px)"
           decoding="async"
           fetchPriority="high"
-          alt={photo.caption ?? `Photograph ${photo.id}`}
+          alt={photo.alt ?? photo.caption ?? `Photograph ${photo.id}`}
           className="max-h-full max-w-full border border-hairline object-contain"
         />
       </div>
-      <div className="mx-auto grid w-full max-w-lg grid-cols-[1fr_auto_1fr] items-center gap-2 font-mono text-xs tracking-[0.06em] text-ink-2 sm:gap-8">
-        <button onClick={() => onNav(-1)} data-cursor className="min-h-11 min-w-11 px-2 transition-colors hover:text-accent">
+      <div className="mx-auto grid w-full min-w-0 max-w-lg grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-2 font-mono text-xs tracking-[0.06em] text-ink-2 sm:gap-8">
+        <button onClick={() => onNav(-1)} data-cursor className="min-h-11 min-w-11 whitespace-nowrap px-2 transition-colors hover:text-accent">
           ← PREV
         </button>
-        <span aria-live="polite" aria-atomic="true" className="text-center tabular-nums">
-          {String(index + 1).padStart(2, '0')} / {String(roll.photos.length).padStart(2, '0')} ·{' '}
-          {photo.id}
+        <span aria-live="polite" aria-atomic="true" className="min-w-0 text-center tabular-nums">
+          <span className="block whitespace-nowrap">{String(index + 1).padStart(2, '0')} / {String(roll.photos.length).padStart(2, '0')}</span>
+          <span title={photo.id} className="block truncate text-[10px] leading-5 text-ink-3">{photo.id}</span>
         </span>
-        <button onClick={() => onNav(1)} data-cursor className="min-h-11 min-w-11 px-2 transition-colors hover:text-accent">
+        <button onClick={() => onNav(1)} data-cursor className="min-h-11 min-w-11 whitespace-nowrap px-2 transition-colors hover:text-accent">
           NEXT →
         </button>
       </div>

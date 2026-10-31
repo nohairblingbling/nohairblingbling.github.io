@@ -10,6 +10,7 @@ import xj2 from './assets/gallery/XJ2.jpg';
 import xj3 from './assets/gallery/XJ3.jpg';
 import xj4 from './assets/gallery/XJ4.jpg';
 import xj5 from './assets/gallery/XJ5.jpg';
+import { collectionPhotos } from './galleryAssets';
 
 export type Author = { name: string; me?: boolean };
 export type Publication = {
@@ -23,8 +24,16 @@ export type Publication = {
   featured?: boolean;
 };
 export type TimelineEntry = { org: string; role: string; period: string };
-export type Photo = { id: string; src: string; caption?: string; display?: { src: string; srcSet: string; width: number; height: number } };
-export type Roll = { id: string; title: string; subtitle?: string; year?: string; photos: Photo[] };
+export type Photo = { id: string; src: string; alt?: string; caption?: string; display?: { src: string; srcSet: string; width: number; height: number } };
+export type GalleryCategory = 'portraits' | 'landscapes';
+export type Roll = {
+  id: string; title: string; category: GalleryCategory; location: string;
+  subtitle?: string; year?: string; date?: string; photos: Photo[];
+};
+export const galleryCategories = [
+  { id: 'portraits', label: 'Portraits', mark: 'P' },
+  { id: 'landscapes', label: 'Landscapes', mark: 'L' },
+] as const;
 
 export const meta = {
   title: 'Yuzhuo Jia — Ph.D. Student at Kyushu University',
@@ -129,8 +138,20 @@ export const socials: { label: string; url: string }[] = [
 
 export const rolls: Roll[] = [
   {
+    id: 'north-xinjiang-portraits', title: 'North Xinjiang',
+    category: 'portraits', location: 'north-xinjiang', year: '2025', date: 'Aug 2025',
+    photos: collectionPhotos('northXinjiangPortraits'),
+  },
+  {
+    id: 'northwest-portraits', title: 'Northwest China',
+    category: 'portraits', location: 'northwest-china', year: '2025', date: 'Aug 2025',
+    photos: collectionPhotos('northwestPortraits'),
+  },
+  {
     id: 'north-xinjiang',
     title: 'North Xinjiang',
+    category: 'landscapes',
+    location: 'north-xinjiang',
     year: '2025',
     photos: [
       { id: 'XJ1', src: xj1, display: photoDisplays.XJ1 },
@@ -139,6 +160,10 @@ export const rolls: Roll[] = [
       { id: 'XJ4', src: xj4, display: photoDisplays.XJ4 },
       { id: 'XJ5', src: xj5, display: photoDisplays.XJ5 },
     ],
+  },
+  {
+    id: 'yunnan', title: 'Yunnan', category: 'landscapes', location: 'yunnan',
+    year: '2025', date: 'Mar 2025', photos: collectionPhotos('yunnan'),
   },
 ];
 

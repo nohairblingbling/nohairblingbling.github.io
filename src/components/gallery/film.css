@@ -7,6 +7,7 @@
   --film-rail: 24px;
   --film-pitch: 32px;
   --film-photo-height: clamp(240px, 42svh, 430px);
+  --film-photo-size: min(var(--film-photo-height), calc(100vw - 64px));
 }
 
 /* The roll occupies a viewing area between its title and its interaction cues. */
@@ -25,7 +26,13 @@
 }
 .film-viewer > .film-stage { flex-shrink: 0; }
 .film-track, .film-scroll { padding-block: 16px; }
-.film-image { height: var(--film-photo-height); }
+.film-image {
+  display: block;
+  width: var(--film-photo-size);
+  height: var(--film-photo-size);
+  object-fit: contain;
+  object-position: center;
+}
 @media (max-width: 47.999rem) and (max-height: 700px) {
   .gallery-view { --film-photo-height: clamp(200px, 34svh, 240px); }
 }
@@ -80,6 +87,7 @@
 .film-frame {
   position: relative;
   flex-shrink: 0;
+  width: calc(var(--film-photo-size) + 30px);
   margin: 0;
   padding-inline: 12px;
 }
@@ -97,7 +105,8 @@
   letter-spacing: 0.15em;
   line-height: 1;
 }
-.film-edge-top > span:first-child { color: color-mix(in oklch, var(--color-accent) 20%, var(--film-ink)); }
+.film-edge-top > span:first-child { flex-shrink: 0; color: color-mix(in oklch, var(--color-accent) 20%, var(--film-ink)); }
+.film-edge-top > span:last-child { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .film-edge-bottom { height: 30px; }
 .film-frame-number { font-size: 14px; letter-spacing: 0.08em; }
 .film-frame-arrow { padding-left: 8px; font-size: 10px; }
@@ -111,6 +120,8 @@
 .film-window {
   position: relative;
   display: block;
+  width: calc(var(--film-photo-size) + 6px);
+  height: calc(var(--film-photo-size) + 6px);
   overflow: hidden;
   cursor: pointer;
   padding: 3px;

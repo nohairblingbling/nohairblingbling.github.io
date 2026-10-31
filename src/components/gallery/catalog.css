@@ -1,0 +1,48 @@
+.gallery-shelf-view { min-height: 100svh; padding-block: 112px 72px; }
+.gallery-shelf-heading { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 20px; }
+.gallery-kicker { margin-bottom: 12px; color: var(--color-accent); font: 11px/1.5 var(--font-mono); letter-spacing: 0.2em; }
+.gallery-title { color: oklch(0.9 0.045 210); font: italic clamp(2.5rem, 5vw, 3.5rem)/1.1 var(--font-serif); letter-spacing: -0.02em; }
+/* Headings receive reading focus after navigation; interactive controls retain their focus rings. */
+.gallery-title:focus { outline: none; }
+.gallery-summary, .gallery-roll-summary { color: var(--color-ink-2); font: 13px/1.6 var(--font-mono); }
+.gallery-summary { padding-bottom: 4px; }
+.gallery-filters { display: flex; gap: clamp(24px, 5vw, 40px); margin-top: 28px; border-bottom: 1px solid var(--color-hairline); }
+.gallery-filters button { position: relative; display: inline-flex; min-height: 52px; align-items: center; gap: 10px; color: var(--color-ink-2); font-size: 14px; transition: color 180ms ease-out; }
+.gallery-filters button span { font: 11px/1 var(--font-mono); opacity: 0.75; }
+.gallery-filters button::after { content: ''; position: absolute; height: 1px; bottom: -1px; inset-inline: 0; background: currentColor; transform: scaleX(0); transform-origin: left; transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1); }
+.gallery-filters button[aria-pressed="true"], .gallery-filters button:hover { color: oklch(0.9 0.045 210); }
+.gallery-filters button[aria-pressed="true"]::after { transform: scaleX(1); }
+.gallery-rolls { display: grid; grid-template-columns: minmax(0, 1fr); column-gap: 40px; }
+.gallery-rolls .film-canister { --roll-scale: 0.44; --roll-width: 158.4px; display: grid; grid-template-columns: var(--roll-width) minmax(0, 1fr); align-items: center; gap: 12px; min-height: 210px; padding-block: 24px; border-bottom: 1px solid var(--color-hairline); }
+.gallery-roll-object { position: relative; width: var(--roll-width); height: calc(284px * var(--roll-scale)); }
+.gallery-roll-object .film-canister-stage { width: 360px; transform: scale(var(--roll-scale)); transform-origin: top left; }
+.gallery-roll-info { display: block; min-width: 0; }
+.gallery-roll-category { display: block; color: oklch(0.86 0.035 210); font: 11px/1.5 var(--font-mono); letter-spacing: 0.12em; text-transform: uppercase; }
+.gallery-roll-title { display: block; margin-block: 8px 10px; color: var(--color-ink); font: 28px/1.05 var(--font-serif); }
+.gallery-roll-meta { display: block; color: var(--color-ink-2); font: 13px/1.65 var(--font-mono); }
+.gallery-roll-open { display: block; margin-top: 14px; color: var(--color-ink-2); font-size: 13px; transition: color 180ms ease-out; }
+.film-canister:hover .gallery-roll-open, .film-canister:focus-visible .gallery-roll-open { color: var(--color-accent); }
+.gallery-shelf-footer { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; padding-top: 24px; color: var(--color-ink-2); font: 12px/1.6 var(--font-mono); }
+.gallery-breadcrumb { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; color: var(--color-ink-2); font: 12px/1.5 var(--font-mono); }
+.gallery-breadcrumb button { min-height: 44px; transition: color 180ms ease-out; }
+.gallery-breadcrumb button:hover { color: var(--color-accent); }
+.gallery-roll-summary { display: flex; gap: 12px; align-items: center; margin-top: 12px; }
+.gallery-related { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; min-height: 44px; margin-top: 8px; text-align: left; color: oklch(0.84 0.035 210); font: 12px/1.6 var(--font-mono); transition: color 180ms ease-out; }
+.gallery-related:hover { color: var(--color-accent); }
+@media (max-width: 359px) {
+  .gallery-rolls .film-canister { --roll-scale: 0.35; --roll-width: 126px; gap: 8px; }
+  .gallery-filters { gap: 22px; }
+  .gallery-filters button { gap: 6px; }
+}
+@media (min-width: 768px) {
+  .gallery-shelf-view { padding-top: 136px; }
+  .gallery-rolls { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .gallery-rolls .film-canister { --roll-scale: 0.48; --roll-width: 172.8px; min-height: 230px; }
+}
+@media (min-width: 1024px) {
+  .gallery-rolls .film-canister { --roll-scale: 0.6; --roll-width: 216px; min-height: 252px; }
+  .gallery-roll-title { font-size: 32px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .gallery-filters button::after { transition: none; }
+}
