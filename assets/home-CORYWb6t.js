@@ -1,4 +1,4 @@
-import{r as x,j as e,a as z,u as F,d as h,h as u,D as _,e as C,s as D,t as B,p as $,R as H,m as q}from"./Reveal-foVIHCwK.js";import{R as G,C as U,G as W,P as V,M as J,o as K}from"./animationVisibility-CAy4A-1u.js";import{S as Y,P as Q}from"./PubCard-D2OjdB9b.js";const X=["#7fa3b0","#8fa0ad","#2dd4e8"],Z=`
+import{r as x,j as e,a as z,u as F,d as h,h as u,D as _,e as C,s as D,t as B,p as $,R as H,m as q}from"./Reveal-D_xUOZK0.js";import{R as G,C as U,G as W,P as V,M as J,o as K}from"./animationVisibility-CAy4A-1u.js";import{S as Y,P as Q}from"./PubCard-CJaOBiNs.js";const X=["#7fa3b0","#8fa0ad","#2dd4e8"],Z=`
   attribute vec3 position;
   attribute vec4 random;
   attribute vec3 color;
