@@ -1,11 +1,12 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState, type CSSProperties, type ReactNode } from 'react';
-import { hero } from '../content';
+import { currentCamera, hero } from '../content';
 import { usePrefersReducedMotion } from '../hooks';
 import DecryptedText from './reactbits/DecryptedText';
 import EntranceProgress from './EntranceProgress';
 import { photoDisplays } from '../imageAssets';
 const landscape = photoDisplays.XJ1;
 const mountains = photoDisplays.XJ4;
+const meadow = photoDisplays.XJ3;
 import './site-entrance.css';
 
 const READY_HOLD = 650;
@@ -119,7 +120,7 @@ export default function SiteEntrance({ children, play }: { children: ReactNode; 
           <div className="entrance-scene">
             <div className="entrance-caption" aria-hidden="true">
               <span><i /> A NEW FRAME</span>
-              <span>35 MM / ISO 400</span>
+              <span>{currentCamera.brand} {currentCamera.model} / DIGITAL</span>
             </div>
             <div className="entrance-film-window" aria-hidden="true">
               <div className="entrance-film-track">
@@ -144,7 +145,7 @@ export default function SiteEntrance({ children, play }: { children: ReactNode; 
                     <span className="entrance-scan" />
                   </div>
                   <div className="entrance-frame entrance-frame-neighbor">
-                    <img src={mountains.src} srcSet={mountains.srcSet} sizes="(max-width: 767px) 85vw, 544px" decoding="async" alt="" width="600" height="400" />
+                    <img src={meadow.src} srcSet={meadow.srcSet} sizes="(max-width: 767px) 85vw, 544px" decoding="async" alt="" width="600" height="400" />
                     <span className="entrance-frame-index">02</span>
                   </div>
                 </div>

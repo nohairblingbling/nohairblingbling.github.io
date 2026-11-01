@@ -1,6 +1,7 @@
 import { useEffect, useRef, type RefObject } from 'react';
 import { Renderer, Camera, Transform, Mesh, Program, Cylinder, Torus, Box, Texture, type Geometry } from 'ogl';
 import type { Roll } from '../../content';
+import { captureLabel, labelPalettes } from './rollLabel';
 
 export type CanisterModelHandle = { turn: number; render?: () => void };
 
@@ -54,7 +55,9 @@ function labelTexture(roll: Roll) {
   canvas.height = 512;
   const ctx = canvas.getContext('2d');
   if (!ctx) return null;
-  ctx.fillStyle = '#c8c2af';
+  const label = captureLabel(roll.capture);
+  const palette = labelPalettes[roll.labelTone];
+  ctx.fillStyle = palette.paper;
   ctx.fillRect(0, 0, 1024, 512);
   // Subtle, deterministic paper fibres rather than a regularly repeated dot grid.
   let seed = 400;
@@ -64,13 +67,13 @@ function labelTexture(roll: Roll) {
     ctx.fillRect(random() * 1024, random() * 512, 1 + random(), 1);
   }
   ctx.translate(24, 0);
-  ctx.fillStyle = '#65524b';
+  ctx.fillStyle = palette.stamp;
   ctx.font = '500 29px "JetBrains Mono Variable", monospace';
   ctx.fillText('Y Z J', 350, 57);
   ctx.fillText(roll.category === 'portraits' ? 'P' : 'L', 645, 57);
   ctx.fillRect(350, 77, 324, 3);
   ctx.fillRect(350, 84, 324, 1);
-  ctx.fillStyle = '#252727';
+  ctx.fillStyle = palette.ink;
   ctx.font = '74px "Instrument Serif", Georgia, serif';
   const words = roll.title.split(' ');
   const lines: string[] = [];
@@ -83,11 +86,19 @@ function labelTexture(roll: Roll) {
   }
   if (line) lines.push(line);
   lines.slice(0, 2).forEach((text, i) => ctx.fillText(text, 350, 167 + i * 79, 324));
-  ctx.font = '800 116px "Inter Variable", sans-serif';
-  ctx.fillText('400', 345, 378);
-  for (let i = 0; i < 11; i++) ctx.fillRect(594 + i * 7, 294, i % 3 === 0 ? 4 : 2, 75);
-  ctx.font = '27px "JetBrains Mono Variable", monospace';
-  ctx.fillText(`${String(roll.photos.length).padStart(2, '0')} EXP${roll.year ? ` · ${roll.year}` : ''}`, 350, 446, 324);
+  ctx.fillStyle = palette.stamp;
+  ctx.font = '500 26px "JetBrains Mono Variable", monospace';
+  ctx.fillText(label.maker, 350, 292, 324);
+  ctx.fillStyle = palette.ink;
+  // Fit long camera or film names by reducing type size rather than squeezing the lettering.
+  let markSize = 90;
+  do { ctx.font = `800 ${markSize--}px "Inter Variable", sans-serif`; }
+  while (ctx.measureText(label.mark).width > 324 && markSize > 24);
+  ctx.fillText(label.mark, 345, 377);
+  ctx.font = '23px "JetBrains Mono Variable", monospace';
+  ctx.fillText(label.medium, 350, 411, 324);
+  ctx.font = '25px "JetBrains Mono Variable", monospace';
+  ctx.fillText(`${String(roll.photos.length).padStart(2, '0')} EXP${roll.year ? ` · ${roll.year}` : ''}`, 350, 459, 324);
   // A printed seam and small calibration bars become visible as the cylinder turns.
   ctx.fillStyle = '#363a39';
   ctx.fillRect(770, 0, 22, 512);

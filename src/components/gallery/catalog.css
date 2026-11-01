@@ -20,6 +20,7 @@
 .gallery-roll-category { display: block; color: oklch(0.86 0.035 210); font: 11px/1.5 var(--font-mono); letter-spacing: 0.12em; text-transform: uppercase; }
 .gallery-roll-title { display: block; margin-block: 8px 10px; color: var(--color-ink); font: 28px/1.05 var(--font-serif); }
 .gallery-roll-meta { display: block; color: var(--color-ink-2); font: 13px/1.65 var(--font-mono); }
+.gallery-roll-equipment { display: block; margin-top: 4px; color: var(--color-ink-2); font: 11px/1.65 var(--font-mono); letter-spacing: 0.02em; }
 .gallery-roll-open { display: block; margin-top: 14px; color: var(--color-ink-2); font-size: 13px; transition: color 180ms ease-out; }
 .film-canister:hover .gallery-roll-open, .film-canister:focus-visible .gallery-roll-open { color: var(--color-accent); }
 .gallery-shelf-footer { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; padding-top: 24px; color: var(--color-ink-2); font: 12px/1.6 var(--font-mono); }

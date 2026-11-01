@@ -1,8 +1,9 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, type CSSProperties } from 'react';
 import { galleryCategories, type Roll } from '../../content';
 import { useIsCoarsePointer, usePrefersReducedMotion } from '../../hooks';
 import FilmStock from './FilmStock';
 import CanisterModel, { type CanisterModelHandle } from './CanisterModel';
+import { captureLabel, labelPalettes } from './rollLabel';
 import { CLOSED_POSE, FULL_TURN, OPEN_DURATION, RETRACT_DURATION, RETURN_DURATION, sampleCanisterMotion, settledPose } from './canisterMotion';
 
 export default function Canister({ roll, onOpen }: { roll: Roll; onOpen: () => void }) {
@@ -18,6 +19,8 @@ export default function Canister({ roll, onOpen }: { roll: Roll; onOpen: () => v
   const reduced = usePrefersReducedMotion();
   const open = (!coarse && hovered) || focused;
   const category = galleryCategories.find((item) => item.id === roll.category)!;
+  const label = captureLabel(roll.capture);
+  const palette = labelPalettes[roll.labelTone];
 
   useEffect(() => {
     const button = buttonRef.current;
@@ -72,6 +75,7 @@ export default function Canister({ roll, onOpen }: { roll: Roll; onOpen: () => v
       onBlur={() => setFocused(false)}
       data-cursor
       data-roll-id={roll.id}
+      style={{ '--canister-paper': palette.paper, '--canister-ink': palette.ink, '--canister-stamp': palette.stamp } as CSSProperties}
       aria-label={`Open ${category.label.toLowerCase()} roll ${roll.title}`}
       className={`film-canister group block w-full text-left ${modelReady ? 'model-ready' : ''}`}
     >
@@ -81,7 +85,7 @@ export default function Canister({ roll, onOpen }: { roll: Roll; onOpen: () => v
             <div className="film-leader-sleeve">
               <div ref={leaderRef} className="film-leader">
                 <FilmStock />
-                <span className="film-leader-mark" aria-hidden="true">400 →</span>
+                <span className="film-leader-mark" aria-hidden="true">{label.leader} →</span>
               </div>
             </div>
             <CanisterModel roll={roll} motion={model} onReady={setModelReady} />
@@ -93,7 +97,9 @@ export default function Canister({ roll, onOpen }: { roll: Roll; onOpen: () => v
                 <div className="film-canister-print">
                   <p className="film-canister-brand">YZJ · {category.mark}</p>
                   <p className="film-canister-title">{roll.title}</p>
-                  <p className="film-canister-stock">400 <span className="film-barcode" aria-hidden="true" /></p>
+                  <p className="film-canister-maker">{label.maker}</p>
+                  <p className="film-canister-stock">{label.mark}</p>
+                  <p className="film-canister-medium">{label.medium}</p>
                   <p className="film-canister-meta">
                     {roll.subtitle && `${roll.subtitle} · `}
                     {String(roll.photos.length).padStart(2, '0')} EXP
@@ -111,6 +117,7 @@ export default function Canister({ roll, onOpen }: { roll: Roll; onOpen: () => v
         <span className="gallery-roll-category">{category.label}</span>
         <span className="gallery-roll-title">{roll.title}</span>
         <span className="gallery-roll-meta">{roll.date ?? roll.year} · {String(roll.photos.length).padStart(2, '0')} frames</span>
+        <span className="gallery-roll-equipment">{label.detail}</span>
         <span className="gallery-roll-open">Unspool roll <span aria-hidden="true">↗</span></span>
       </span>
     </button>

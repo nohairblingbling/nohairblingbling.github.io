@@ -3,6 +3,7 @@ import type { Roll } from '../../content';
 import { usePrefersReducedMotion } from '../../hooks';
 import Frame from './Frame';
 import FilmStock from './FilmStock';
+import { captureLabel } from './rollLabel';
 import { observeAnimationVisibility } from '../../lib/animationVisibility';
 
 const SPEED = 42; // px per second
@@ -16,6 +17,7 @@ export default function RollStrip({
   onSelect: (index: number) => void;
 }) {
   const reduced = usePrefersReducedMotion();
+  const sourceLabel = captureLabel(roll.capture).edge;
   const containerRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const runRef = useRef<HTMLDivElement>(null);
@@ -132,7 +134,7 @@ export default function RollStrip({
           <div className="film-run w-max">
             <FilmStock />
             {roll.photos.map((p, i) => (
-              <Frame key={p.id} photo={p} index={i} onSelect={() => onSelect(i)} />
+              <Frame key={p.id} photo={p} sourceLabel={sourceLabel} index={i} onSelect={() => onSelect(i)} />
             ))}
           </div>
         </div>
@@ -147,6 +149,7 @@ export default function RollStrip({
         <Frame
           key={p.id}
           photo={p}
+          sourceLabel={sourceLabel}
           index={i}
           duplicate={clone}
           onSelect={() => {

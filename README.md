@@ -10,6 +10,8 @@ All copy, publications, projects, links, and the position line live in `src/cont
 
 Rolls in `src/content.ts` belong to `portraits` or `landscapes`. Matching `location` values connect rolls photographed in the same place. Category filters use `?category=portraits` or `?category=landscapes`; roll links retain their existing hash format.
 
+Each roll has a `capture` entry and a `labelTone` (`ivory`, `sand`, `sage`, or `silver`). Digital entries use `{ medium: 'digital', brand, model }`; film entries use `{ medium: 'film', brand, stock, iso, format?, camera? }`. Fill these with the actual equipment and film data. The 3D label, fallback label, shelf caption, and film-edge markings share these values. Current collections use `currentCamera` (SONY A7M4); adding a film collection does not change existing digital labels.
+
 New photo selections and English image descriptions live in `scripts/import-gallery.py`. To rebuild their web assets, install Pillow with WebP support and run:
 
 ```bash

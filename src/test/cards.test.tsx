@@ -43,7 +43,7 @@ describe('GalleryPage', () => {
     const roll = rolls[0];
     fireEvent.click(screen.getByRole('button', { name: `Open ${roll.category} roll ${roll.title}` }));
     expect(screen.getAllByRole('figure')).toHaveLength(roll.photos.length);
-    expect(screen.getAllByText('YZJ 400')).toHaveLength(roll.photos.length);
+    expect(screen.getAllByText('SONY A7M4')).toHaveLength(roll.photos.length);
     const trigger = screen.getByRole('button', { name: `Enlarge photograph ${roll.photos[0].id}` });
     fireEvent.click(trigger);
     expect(screen.getByRole('dialog')).toBeInTheDocument();

@@ -26,10 +26,16 @@ export type Publication = {
 export type TimelineEntry = { org: string; role: string; period: string };
 export type Photo = { id: string; src: string; alt?: string; caption?: string; display?: { src: string; srcSet: string; width: number; height: number } };
 export type GalleryCategory = 'portraits' | 'landscapes';
+export type Capture =
+  | { medium: 'digital'; brand: string; model: string }
+  | { medium: 'film'; brand: string; stock: string; iso: number; format?: string; camera?: string };
+export type LabelTone = 'ivory' | 'sand' | 'sage' | 'silver';
 export type Roll = {
   id: string; title: string; category: GalleryCategory; location: string;
+  capture: Capture; labelTone: LabelTone;
   subtitle?: string; year?: string; date?: string; photos: Photo[];
 };
+export const currentCamera = { medium: 'digital', brand: 'SONY', model: 'A7M4' } satisfies Capture;
 export const galleryCategories = [
   { id: 'portraits', label: 'Portraits', mark: 'P' },
   { id: 'landscapes', label: 'Landscapes', mark: 'L' },
@@ -140,17 +146,20 @@ export const rolls: Roll[] = [
   {
     id: 'north-xinjiang-portraits', title: 'North Xinjiang',
     category: 'portraits', location: 'north-xinjiang', year: '2025', date: 'Aug 2025',
+    capture: currentCamera, labelTone: 'ivory',
     photos: collectionPhotos('northXinjiangPortraits'),
   },
   {
     id: 'northwest-portraits', title: 'Northwest China',
     category: 'portraits', location: 'northwest-china', year: '2025', date: 'Aug 2025',
+    capture: currentCamera, labelTone: 'sand',
     photos: collectionPhotos('northwestPortraits'),
   },
   {
     id: 'north-xinjiang',
     title: 'North Xinjiang',
     category: 'landscapes',
+    capture: currentCamera, labelTone: 'sage',
     location: 'north-xinjiang',
     year: '2025',
     photos: [
@@ -163,12 +172,13 @@ export const rolls: Roll[] = [
   },
   {
     id: 'yunnan', title: 'Yunnan', category: 'landscapes', location: 'yunnan',
+    capture: currentCamera, labelTone: 'silver',
     year: '2025', date: 'Mar 2025', photos: collectionPhotos('yunnan'),
   },
 ];
 
 export const footer = {
   coordinates: 'FUKUOKA — JAPAN',
-  exif: 'ISO 400 · ƒ/1.4 · 1/125',
+  exif: `${currentCamera.brand} ${currentCamera.model} · DIGITAL`,
   year: new Date().getFullYear(),
 };

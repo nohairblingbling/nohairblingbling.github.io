@@ -2,11 +2,13 @@ import type { Photo } from '../../content';
 
 export default function Frame({
   photo,
+  sourceLabel,
   index,
   onSelect,
   duplicate = false,
 }: {
   photo: Photo;
+  sourceLabel: string;
   index: number;
   onSelect?: () => void;
   duplicate?: boolean;
@@ -24,7 +26,7 @@ export default function Frame({
   return (
     <figure className="film-frame">
       <div className="film-edge film-edge-top">
-        <span>YZJ 400</span>
+        <span>{sourceLabel}</span>
         <span>{photo.id}</span>
       </div>
       <button
