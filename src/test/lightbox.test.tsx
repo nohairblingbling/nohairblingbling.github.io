@@ -25,6 +25,28 @@ function GalleryHarness() {
 }
 
 describe('Lightbox keyboard and background isolation', () => {
+  it('turns one photo per horizontal swipe, including a swipe with a long momentum tail', () => {
+    const now = vi.spyOn(performance, 'now');
+    try {
+      render(<GalleryHarness />);
+      fireEvent.click(screen.getByRole('button', { name: 'Open photograph' }));
+      const dialog = screen.getByRole('dialog');
+      const swipe = (time: number, deltaX: number) => {
+        now.mockReturnValue(time);
+        fireEvent.wheel(dialog, { deltaX, cancelable: true });
+      };
+      swipe(0, 20);
+      expect(dialog).toHaveAccessibleName(`Photograph ${roll.photos[0].id}`);
+      swipe(16, 48);
+      for (let time = 32; time <= 352; time += 16) swipe(time, 15);
+      expect(dialog).toHaveAccessibleName(`Photograph ${roll.photos[1].id}`);
+      swipe(700, -64);
+      expect(dialog).toHaveAccessibleName(`Photograph ${roll.photos[0].id}`);
+    } finally {
+      now.mockRestore();
+    }
+  });
+
   it('keeps a preview visible until the original is decoded, then warms the neighbours', async () => {
     const OriginalImage = window.Image;
     const requests: { src: string; onload: null | (() => Promise<void>) }[] = [];

@@ -4,6 +4,7 @@ import { usePrefersReducedMotion } from '../../hooks';
 import Frame from './Frame';
 import FilmStock from './FilmStock';
 import { captureLabel } from './rollLabel';
+import { onHorizontalWheel } from './horizontalWheel';
 import { observeAnimationVisibility } from '../../lib/animationVisibility';
 
 const SPEED = 42; // px per second
@@ -109,11 +110,16 @@ export default function RollStrip({
       window.addEventListener('pointercancel', onUp);
     };
 
+    const stopWheel = onHorizontalWheel(container, (pixels) => {
+      offset.current += pixels;
+      if (!raf) raf = requestAnimationFrame(loop);
+    });
     container.addEventListener('pointerenter', onEnter);
     container.addEventListener('pointerleave', onLeave);
     container.addEventListener('pointerdown', onDown);
     return () => {
       cancelAnimationFrame(raf);
+      stopWheel();
       stopObserving();
       ro.disconnect();
       images.forEach(img => img.removeEventListener('load', measure));

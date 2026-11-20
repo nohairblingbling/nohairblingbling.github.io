@@ -87,7 +87,7 @@ export default function GalleryPage() {
           <div className="mx-auto w-full max-w-5xl px-6">
             <p className="film-instructions mt-4 flex flex-wrap items-center gap-x-2.5 gap-y-1 font-mono text-xs leading-relaxed tracking-[0.06em] text-ink-2">
               {!coarse && !reduced && <><span>HOVER TO PAUSE</span><span aria-hidden="true" className="text-ink-3">·</span></>}
-              <span>{coarse ? 'SWIPE TO BROWSE' : reduced ? 'SCROLL TO BROWSE' : 'DRAG TO SCRUB'}</span>
+              <span>{coarse ? 'SWIPE TO BROWSE' : reduced ? 'SCROLL TO BROWSE' : 'SWIPE OR DRAG TO BROWSE'}</span>
               <span aria-hidden="true" className="text-ink-3">·</span>
               <span>{coarse ? 'TAP TO ENLARGE' : 'CLICK TO ENLARGE'}</span>
             </p>

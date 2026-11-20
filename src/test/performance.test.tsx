@@ -38,6 +38,30 @@ function mouse(target: Element | Window, type: string, x = 120) {
 }
 
 describe('animation work follows visibility and interaction', () => {
+  it('scrubs a paused roll in both directions with a trackpad and leaves vertical scrolling and zoom alone', () => {
+    const onSelect = vi.fn();
+    const view = render(<RollStrip roll={rolls[0]} onSelect={onSelect} />);
+    const stage = view.container.querySelector('.film-stage')!;
+    const track = view.container.querySelector<HTMLElement>('.film-track')!;
+    const frame = view.container.querySelector('.film-window')!;
+    mouse(stage, 'pointerenter');
+    const wheel = (deltaX: number, deltaY: number, ctrlKey = false) =>
+      fireEvent.wheel(frame, { deltaX, deltaY, ctrlKey, cancelable: true });
+
+    expect(wheel(64.5, 2)).toBe(false);
+    act(() => vi.advanceTimersByTime(20));
+    expect(track.style.transform).toBe('translate3d(-64.5px, 0, 0)');
+    expect(wheel(-80, 0)).toBe(false);
+    act(() => vi.advanceTimersByTime(20));
+    expect(track.style.transform).toBe('translate3d(-5984.5px, 0, 0)');
+    expect(wheel(3, 70)).toBe(true);
+    expect(wheel(100, 0, true)).toBe(true);
+    act(() => vi.advanceTimersByTime(20));
+    expect(track.style.transform).toBe('translate3d(-5984.5px, 0, 0)');
+    fireEvent.click(frame);
+    expect(onSelect).toHaveBeenCalledWith(0);
+  });
+
   it('stops scheduling the paused film, still scrubs smoothly, and resumes at the same speed', () => {
     const onSelect = vi.fn();
     const view = render(<RollStrip roll={rolls[0]} onSelect={onSelect} />);

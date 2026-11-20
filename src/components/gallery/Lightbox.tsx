@@ -1,6 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import type { Roll } from '../../content';
+import { onHorizontalWheel } from './horizontalWheel';
+
+const SWIPE_DISTANCE = 48; // CSS pixels
+const SWIPE_IDLE = 180; // ms of quiet before accepting another swipe
 
 export default function Lightbox({
   roll,
@@ -16,8 +20,29 @@ export default function Lightbox({
   const photo = roll.photos[index];
   const dialogRef = useRef<HTMLDivElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
+  const swipe = useRef({ lastEvent: -Infinity, distance: 0, navigated: false });
   const [decodedSource, setDecodedSource] = useState<string | null>(null);
   const originalReady = decodedSource === photo.src || !photo.display;
+
+  useEffect(() => {
+    const dialog = dialogRef.current;
+    if (!dialog) return;
+    return onHorizontalWheel(dialog, (pixels) => {
+      const gesture = swipe.current;
+      const now = performance.now();
+      if (now - gesture.lastEvent > SWIPE_IDLE) {
+        gesture.distance = 0;
+        gesture.navigated = false;
+      }
+      gesture.lastEvent = now;
+      if (gesture.navigated) return; // Ignore the momentum tail after changing photos.
+      gesture.distance += pixels;
+      if (Math.abs(gesture.distance) >= SWIPE_DISTANCE) {
+        gesture.navigated = true;
+        onNav(Math.sign(gesture.distance));
+      }
+    });
+  }, [onNav]);
 
   useEffect(() => {
     if (!photo.display) return;
